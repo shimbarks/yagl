@@ -19,11 +19,12 @@ const schema: SchemaOf<Yagl> = yup
   .required();
 
 export interface YaglFormProps {
+  id: string;
   onSubmit: SubmitHandler<Yagl>;
   data?: Yagl;
 }
 
-export const YaglForm: React.FC<YaglFormProps> = ({ onSubmit, data }) => {
+export const YaglForm: React.FC<YaglFormProps> = ({ id, onSubmit, data }) => {
   const {
     register,
     handleSubmit,
@@ -42,7 +43,7 @@ export const YaglForm: React.FC<YaglFormProps> = ({ onSubmit, data }) => {
   }, [data]);
 
   return (
-    <form className="yagl-form" onSubmit={handleSubmit(onSubmit)}>
+    <form id={id} className="yagl-form" onSubmit={handleSubmit(onSubmit)}>
       <FormField
         {...register('firstName')}
         error={errors.firstName}
@@ -77,9 +78,6 @@ export const YaglForm: React.FC<YaglFormProps> = ({ onSubmit, data }) => {
         type="date"
         label="last day at office"
       />
-      <button type="submit" className="yagl-form__submit-button">
-        generate letter
-      </button>
     </form>
   );
 };

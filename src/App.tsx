@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useId, useRef, useState } from 'react';
 import { SubmitHandler } from 'react-hook-form';
 import './App.scss';
 import { LetterStyleTabs } from './components/letter-style-tabs/LetterStyleTabs';
@@ -10,6 +10,7 @@ export const App = () => {
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
   const [yagl, setYagl] = useState<Yagl>();
   const [data, setData] = useState<Yagl>();
+  const formId = useId();
 
   const generateLetter: SubmitHandler<Yagl> = (data) => {
     if (data) {
@@ -33,14 +34,17 @@ export const App = () => {
   return (
     <main className="app">
       <h1 className="heading">yet another goodbye letter</h1>
-      <section>
+      <section className="data-section">
+        <YaglForm id={formId} onSubmit={generateLetter} data={data} />
         <textarea
           ref={textAreaRef}
           className="code-editor"
           onBlur={onTextAreaBlur}
         ></textarea>
-        <YaglForm onSubmit={generateLetter} data={data} />
       </section>
+      <button type="submit" className="submit-button" form={formId}>
+        generate letter
+      </button>
       <LetterStyleTabs yagl={yagl} />
     </main>
   );

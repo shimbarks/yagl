@@ -3,8 +3,10 @@
 .form-field {
   display: flex;
   flex-direction: column;
+  gap: 0.2em;
 
   &__label {
+    font-size: 18px;
     text-transform: capitalize;
   }
 
@@ -13,7 +15,6 @@
     display: flex;
     align-items: center;
     height: 34px;
-    width: 100%;
     padding-inline: 0.6em;
     border: solid 1px;
     border-radius: 4px;
@@ -29,6 +30,8 @@
   }
 
   &__error {
+    height: 1em;
+    line-height: 1em;
     color: red;
     &::first-letter {
       text-transform: uppercase;
