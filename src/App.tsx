@@ -25,7 +25,7 @@ export const App = () => {
 
   return (
     <main className="app">
-      <h1 className="heading">Yet Another Goodbye Letter</h1>
+      <h1 className="heading">yet another goodbye letter</h1>
       <section>
         <textarea ref={textAreaRef} className="code-editor"></textarea>
         <YaglForm onSubmit={generateLetter} />
