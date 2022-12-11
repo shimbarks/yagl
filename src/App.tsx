@@ -9,6 +9,7 @@ import { parseYagl, yaglToString } from './utils/utils';
 export const App = () => {
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
   const [yagl, setYagl] = useState<Yagl>();
+  const [data, setData] = useState<Yagl>();
 
   const generateLetter: SubmitHandler<Yagl> = (data) => {
     if (data) {
@@ -23,12 +24,22 @@ export const App = () => {
     }
   };
 
+  const onTextAreaBlur = () => {
+    if (textAreaRef.current) {
+      setData(parseYagl(textAreaRef.current.value));
+    }
+  };
+
   return (
     <main className="app">
       <h1 className="heading">yet another goodbye letter</h1>
       <section>
-        <textarea ref={textAreaRef} className="code-editor"></textarea>
-        <YaglForm onSubmit={generateLetter} />
+        <textarea
+          ref={textAreaRef}
+          className="code-editor"
+          onBlur={onTextAreaBlur}
+        ></textarea>
+        <YaglForm onSubmit={generateLetter} data={data} />
       </section>
       <LetterStyleTabs yagl={yagl} />
     </main>

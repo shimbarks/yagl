@@ -1,4 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useEffect } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { SchemaOf } from 'yup';
@@ -19,17 +20,26 @@ const schema: SchemaOf<Yagl> = yup
 
 export interface YaglFormProps {
   onSubmit: SubmitHandler<Yagl>;
+  data?: Yagl;
 }
 
-export const YaglForm: React.FC<YaglFormProps> = ({ onSubmit }) => {
+export const YaglForm: React.FC<YaglFormProps> = ({ onSubmit, data }) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
+    setValue,
   } = useForm<Yagl>({
     defaultValues: schema.cast({}) as Yagl,
     resolver: yupResolver(schema),
   });
+
+  useEffect(() => {
+    if (data) {
+      const entries = Object.entries(data) as Entries<Yagl>;
+      entries.forEach(([key, value]) => setValue(key, value));
+    }
+  }, [data]);
 
   return (
     <form className="yagl-form" onSubmit={handleSubmit(onSubmit)}>
