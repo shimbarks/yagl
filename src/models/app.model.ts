@@ -21,3 +21,9 @@ export const YAGL_KEYS: (keyof Yagl)[] = [
   'endDate',
   'lastDay',
 ];
+
+export const YAGL_DATE_KEYS: (keyof Yagl)[] = [
+  'startDate',
+  'endDate',
+  'lastDay',
+];
