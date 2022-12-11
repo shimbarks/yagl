@@ -11,21 +11,9 @@ const schema: SchemaOf<Yagl> = yup
     firstName: yup.string().required('first name is required'),
     lastName: yup.string().required('last name is required'),
     roles: yup.string().required('at least one role is required'),
-    startDate: yup
-      .date()
-      .required('start date is required')
-      .nullable()
-      .default(null),
-    endDate: yup
-      .date()
-      .required('end dater is required')
-      .nullable()
-      .default(null),
-    lastDay: yup
-      .date()
-      .required('last day is required')
-      .nullable()
-      .default(null),
+    startDate: yup.string().required('start date is required'),
+    endDate: yup.string().required('end dater is required'),
+    lastDay: yup.string().required('last day is required'),
   })
   .required();
 
