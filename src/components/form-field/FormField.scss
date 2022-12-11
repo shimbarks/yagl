@@ -16,7 +16,7 @@
     align-items: center;
     height: 34px;
     padding-inline: 0.6em;
-    border: solid 1px;
+    border: solid 2px;
     border-radius: 4px;
     background-color: white;
     font-size: 18px;
@@ -24,8 +24,8 @@
 
     &:focus-visible {
       outline-offset: 0;
-      outline: 1px solid $purple;
-      border-color: $purple;
+      outline: 2px solid $blue-500;
+      border-color: $blue-500;
     }
   }
 

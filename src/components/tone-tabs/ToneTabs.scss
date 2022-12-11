@@ -1,0 +1,35 @@
+@use '../../styles' as *;
+
+.tone-tabs {
+  width: 100%;
+}
+
+.tab-button {
+  padding: 1em;
+  min-width: 120px;
+  background-color: transparent;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  border-color: $purple-500;
+
+  &[data-state='inactive'] {
+    border: none;
+  }
+
+  &[data-state='active'] {
+    border: 1px solid;
+    border-bottom: none;
+    box-shadow: 0 1px 0 0 white;
+  }
+
+  &:focus-visible {
+    outline-color: transparent;
+    background-color: $blue-200;
+  }
+}
+
+.tab-panel {
+  min-height: 300px;
+  border: 1px solid;
+  border-radius: 4px;
+}
