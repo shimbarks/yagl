@@ -34,7 +34,7 @@ export function yaglToChill(yagl: Yagl): string {
   return `chill ${yagl.firstName}`;
 }
 
-export function convertFormToYagl(form: Yagl): string {
+export function yaglToString(form: Yagl): string {
   const entries = Object.entries(form) as Entries<Yagl>;
   return entries
     .map(([key, value]) => {

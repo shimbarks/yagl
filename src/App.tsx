@@ -4,7 +4,7 @@ import './App.scss';
 import { LetterStyleTabs } from './components/letter-style-tabs/LetterStyleTabs';
 import { YaglForm } from './components/yagl-form/YaglForm';
 import { Yagl } from './models/app.model';
-import { convertFormToYagl, parseYagl } from './utils/utils';
+import { parseYagl, yaglToString } from './utils/utils';
 
 export const App = () => {
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
@@ -15,7 +15,7 @@ export const App = () => {
       setYagl(data);
 
       if (textAreaRef.current) {
-        const yaglString = convertFormToYagl(data);
+        const yaglString = yaglToString(data);
         textAreaRef.current.value = yaglString;
       }
     } else if (textAreaRef.current) {
