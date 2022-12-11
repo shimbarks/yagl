@@ -22,7 +22,12 @@ const renderTabButton = (tone: LetterTone) => {
   const key = getEnumKeyByValue(LetterTone, tone);
 
   return (
-    <Tabs.Trigger className="tab-button" value={tone} aria-label={key}>
+    <Tabs.Trigger
+      key={tone}
+      className="tab-button"
+      value={tone}
+      aria-label={key}
+    >
       <span className="tab-text">{key}</span>
       {tone}
     </Tabs.Trigger>
