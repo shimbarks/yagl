@@ -1,50 +1,60 @@
 import * as Tabs from '@radix-ui/react-tabs';
 import { LetterTone, Yagl } from '../../models/app.model';
-import { yaglToCasual, yaglToFormal, yaglToFunny } from '../../utils/utils';
+import {
+  getEnumKeyByValue,
+  yaglToCasual,
+  yaglToFormal,
+  yaglToFunny,
+} from '../../utils/utils';
 import './ToneTabs.scss';
 
 export interface ToneTabsProps {
   yagl?: Yagl;
 }
 
+const yaglToneFuncMap: { [key in LetterTone]: (yagl: Yagl) => string } = {
+  [LetterTone.FORMAL]: yaglToFormal,
+  [LetterTone.CASUAL]: yaglToCasual,
+  [LetterTone.FUNNY]: yaglToFunny,
+};
+
+const renderTabButton = (tone: LetterTone) => {
+  const key = getEnumKeyByValue(LetterTone, tone);
+
+  return (
+    <Tabs.Trigger className="tab-button" value={tone} aria-label={key}>
+      <span className="tab-text">{key}</span>
+      {tone}
+    </Tabs.Trigger>
+  );
+};
+
+const renderTabPanel = (
+  tone: LetterTone,
+  genFunc: (yagl: Yagl) => string,
+  yagl?: Yagl
+) => {
+  return (
+    <Tabs.Content
+      key={tone}
+      className="tab-panel"
+      value={tone}
+      contentEditable={true}
+    >
+      {yagl && genFunc(yagl)}
+    </Tabs.Content>
+  );
+};
+
 export const ToneTabs: React.FC<ToneTabsProps> = ({ yagl }) => {
   return (
     <Tabs.Root className="tone-tabs" defaultValue={LetterTone.CASUAL}>
       <Tabs.List className="tab-list">
-        <Tabs.Trigger className="tab-button" value={LetterTone.FORMAL}>
-          <span className="tab-text">Formal </span>
-          {LetterTone.FORMAL}
-        </Tabs.Trigger>
-        <Tabs.Trigger className="tab-button" value={LetterTone.CASUAL}>
-          <span className="tab-text">Casual </span>
-          {LetterTone.CASUAL}
-        </Tabs.Trigger>
-        <Tabs.Trigger className="tab-button" value={LetterTone.FUNNY}>
-          <span className="tab-text">Funny </span>
-          {LetterTone.FUNNY}
-        </Tabs.Trigger>
+        {Object.values(LetterTone).map((tone) => renderTabButton(tone))}
       </Tabs.List>
-      <Tabs.Content
-        className="tab-panel"
-        value={LetterTone.FORMAL}
-        contentEditable={true}
-      >
-        {yagl && yaglToFormal(yagl)}
-      </Tabs.Content>
-      <Tabs.Content
-        className="tab-panel"
-        value={LetterTone.CASUAL}
-        contentEditable={true}
-      >
-        {yagl && yaglToCasual(yagl)}
-      </Tabs.Content>
-      <Tabs.Content
-        className="tab-panel"
-        value={LetterTone.FUNNY}
-        contentEditable={true}
-      >
-        {yagl && yaglToFunny(yagl)}
-      </Tabs.Content>
+      {Object.values(LetterTone).map((tone) =>
+        renderTabPanel(tone, yaglToneFuncMap[tone], yagl)
+      )}
     </Tabs.Root>
   );
 };
