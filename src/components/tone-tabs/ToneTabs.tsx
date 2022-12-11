@@ -10,24 +10,39 @@ export interface ToneTabsProps {
 export const ToneTabs: React.FC<ToneTabsProps> = ({ yagl }) => {
   return (
     <Tabs.Root className="tone-tabs" defaultValue={LetterTone.CASUAL}>
-      <Tabs.List>
+      <Tabs.List className="tab-list">
         <Tabs.Trigger className="tab-button" value={LetterTone.FORMAL}>
-          {`Formal ${LetterTone.FORMAL}`}
+          <span className="tab-text">Formal </span>
+          {LetterTone.FORMAL}
         </Tabs.Trigger>
         <Tabs.Trigger className="tab-button" value={LetterTone.CASUAL}>
-          {`Casual ${LetterTone.CASUAL}`}
+          <span className="tab-text">Casual </span>
+          {LetterTone.CASUAL}
         </Tabs.Trigger>
         <Tabs.Trigger className="tab-button" value={LetterTone.FUNNY}>
-          {`Funny ${LetterTone.FUNNY}`}
+          <span className="tab-text">Funny </span>
+          {LetterTone.FUNNY}
         </Tabs.Trigger>
       </Tabs.List>
-      <Tabs.Content className="tab-panel" value={LetterTone.FORMAL}>
+      <Tabs.Content
+        className="tab-panel"
+        value={LetterTone.FORMAL}
+        contentEditable={true}
+      >
         {yagl && yaglToFormal(yagl)}
       </Tabs.Content>
-      <Tabs.Content className="tab-panel" value={LetterTone.CASUAL}>
+      <Tabs.Content
+        className="tab-panel"
+        value={LetterTone.CASUAL}
+        contentEditable={true}
+      >
         {yagl && yaglToCasual(yagl)}
       </Tabs.Content>
-      <Tabs.Content className="tab-panel" value={LetterTone.FUNNY}>
+      <Tabs.Content
+        className="tab-panel"
+        value={LetterTone.FUNNY}
+        contentEditable={true}
+      >
         {yagl && yaglToFunny(yagl)}
       </Tabs.Content>
     </Tabs.Root>
