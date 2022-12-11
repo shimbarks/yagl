@@ -1,7 +1,7 @@
-export enum LetterStyle {
+export enum LetterTone {
   FORMAL = '👔',
   CASUAL = '🤓',
-  CHILL = '💩',
+  FUNNY = '💩',
 }
 
 export interface Yagl {

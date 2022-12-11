@@ -20,8 +20,8 @@ export function yaglToCasual(yagl: Yagl): string {
   return `casual ${yagl.firstName}`;
 }
 
-export function yaglToChill(yagl: Yagl): string {
-  return `chill ${yagl.firstName}`;
+export function yaglToFunny(yagl: Yagl): string {
+  return `funny ${yagl.firstName}`;
 }
 
 export function yaglToString(form: Yagl): string {

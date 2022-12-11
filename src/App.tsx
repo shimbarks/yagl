@@ -1,7 +1,7 @@
 import { useId, useRef, useState } from 'react';
 import { SubmitHandler } from 'react-hook-form';
 import './App.scss';
-import { LetterStyleTabs } from './components/letter-style-tabs/LetterStyleTabs';
+import { ToneTabs } from './components/tone-tabs/ToneTabs';
 import { YaglForm } from './components/yagl-form/YaglForm';
 import { Yagl } from './models/app.model';
 import { parseYagl, yaglToString } from './utils/utils';
@@ -45,7 +45,7 @@ export const App = () => {
       <button type="submit" className="submit-button" form={formId}>
         generate letter
       </button>
-      <LetterStyleTabs yagl={yagl} />
+      <ToneTabs yagl={yagl} />
     </main>
   );
 };
