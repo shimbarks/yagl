@@ -24,6 +24,7 @@ const FormFieldComponent = (
         {...props}
         ref={ref}
         id={id}
+        className={'form-field__input'}
         type={props.type ?? 'text'}
         placeholder={props.pleaceholder}
       />
