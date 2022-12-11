@@ -4,7 +4,7 @@ import { LetterStyleTabs } from './components/letter-style-tabs/LetterStyleTabs'
 import { Yagl } from './models/app.model';
 import { parseYagl } from './utils/utils';
 
-function App() {
+export const App = () => {
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
   const [yagl, setYagl] = useState<Yagl>();
 
@@ -23,9 +23,7 @@ function App() {
         <textarea ref={textAreaRef} className="code-editor"></textarea>
       </section>
       <button onClick={generateLetter}>Generate Letter</button>
-      {<LetterStyleTabs yagl={yagl} />}
+      <LetterStyleTabs yagl={yagl} />
     </main>
   );
-}
-
-export default App;
+};
