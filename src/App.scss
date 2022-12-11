@@ -15,9 +15,13 @@
 }
 
 .data-section {
-  width: 100%;
+  width: min(100%, 120ch);
   display: flex;
   gap: 2rem;
+
+  @media screen and (max-width: 800px) {
+    flex-direction: column;
+  }
 
   > * {
     flex-basis: 50%;
@@ -25,12 +29,14 @@
 }
 
 .code-editor {
+  min-height: 250px;
   resize: none;
   margin-block: 2px;
   border-radius: 4px;
   padding: 1em;
   background-color: black;
   color: white;
+  font-size: 18px;
 }
 
 .submit-button {
