@@ -1,5 +1,4 @@
 import { Yagl, YAGL_DATE_KEYS, YAGL_KEYS } from '../models/app.model';
-import { Entries } from '../models/common.model';
 
 export function parseYagl(value: string): Yagl {
   const unfilteredEntries = value
