@@ -57,6 +57,7 @@ export const YaglForm: React.FC<YaglFormProps> = ({ onSubmit, data }) => {
         {...register('roles')}
         error={errors.roles}
         label="roles at the company"
+        pleaceholder="UI/UX designer, developer, team lead"
       />
       <FormField
         {...register('startDate')}
@@ -76,7 +77,9 @@ export const YaglForm: React.FC<YaglFormProps> = ({ onSubmit, data }) => {
         type="date"
         label="last day at office"
       />
-      <button type="submit">generate letter</button>
+      <button type="submit" className="yagl-form__submit-button">
+        generate letter
+      </button>
     </form>
   );
 };
