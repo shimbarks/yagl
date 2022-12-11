@@ -11,9 +11,21 @@ const schema: SchemaOf<Yagl> = yup
     firstName: yup.string().required('first name is required'),
     lastName: yup.string().required('last name is required'),
     roles: yup.string().required('at least one role is required'),
-    startDate: yup.date().required('start date is required'),
-    endDate: yup.date().required('end dater is required'),
-    lastDay: yup.date().required('last day is required'),
+    startDate: yup
+      .date()
+      .required('start date is required')
+      .nullable()
+      .default(null),
+    endDate: yup
+      .date()
+      .required('end dater is required')
+      .nullable()
+      .default(null),
+    lastDay: yup
+      .date()
+      .required('last day is required')
+      .nullable()
+      .default(null),
   })
   .required();
 
@@ -27,6 +39,7 @@ export const YaglForm: React.FC<YaglFormProps> = ({ onSubmit }) => {
     handleSubmit,
     formState: { errors },
   } = useForm<Yagl>({
+    defaultValues: schema.cast({}) as Yagl,
     resolver: yupResolver(schema),
   });
 
