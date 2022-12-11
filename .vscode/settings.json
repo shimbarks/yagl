@@ -1,0 +1,24 @@
+{
+  "files.eol": "\n",
+  "workbench.colorCustomizations": {
+    "commandCenter.border": "#15202b99",
+    "sash.hoverBorder": "#d5c8b2",
+    "statusBar.background": "#c3b091",
+    "statusBar.foreground": "#15202b",
+    "statusBarItem.hoverBackground": "#b19870",
+    "statusBarItem.remoteBackground": "#c3b091",
+    "statusBarItem.remoteForeground": "#15202b",
+    "titleBar.activeBackground": "#c3b091",
+    "titleBar.activeForeground": "#15202b",
+    "titleBar.inactiveBackground": "#c3b09199",
+    "titleBar.inactiveForeground": "#15202b99"
+  },
+  "peacock.color": "#C3B091",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": true,
+    "source.fixAll.eslint": true
+  },
+  "cSpell.words": ["yagl"]
+}
