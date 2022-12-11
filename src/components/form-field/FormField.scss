@@ -1,0 +1,15 @@
+.form-field {
+  display: flex;
+  flex-direction: column;
+
+  &__label {
+    text-transform: capitalize;
+  }
+
+  &__error {
+    color: red;
+    &::first-letter {
+      text-transform: uppercase;
+    }
+  }
+}

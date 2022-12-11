@@ -1,19 +1,26 @@
 import { useRef, useState } from 'react';
+import { SubmitHandler } from 'react-hook-form';
 import './App.scss';
 import { LetterStyleTabs } from './components/letter-style-tabs/LetterStyleTabs';
+import { YaglForm } from './components/yagl-form/YaglForm';
 import { Yagl } from './models/app.model';
-import { parseYagl } from './utils/utils';
+import { convertFormToYagl, parseYagl } from './utils/utils';
 
 export const App = () => {
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
   const [yagl, setYagl] = useState<Yagl>();
 
-  const generateLetter = () => {
-    if (!textAreaRef.current) {
-      return;
-    }
+  const generateLetter: SubmitHandler<Yagl> = (data) => {
+    if (data) {
+      setYagl(data);
 
-    setYagl(parseYagl(textAreaRef.current.value));
+      if (textAreaRef.current) {
+        const yaglString = convertFormToYagl(data);
+        textAreaRef.current.value = yaglString;
+      }
+    } else if (textAreaRef.current) {
+      setYagl(parseYagl(textAreaRef.current.value));
+    }
   };
 
   return (
@@ -21,8 +28,8 @@ export const App = () => {
       <h1 className="heading">Yet Another Goodbye Letter</h1>
       <section>
         <textarea ref={textAreaRef} className="code-editor"></textarea>
+        <YaglForm onSubmit={generateLetter} />
       </section>
-      <button onClick={generateLetter}>Generate Letter</button>
       <LetterStyleTabs yagl={yagl} />
     </main>
   );

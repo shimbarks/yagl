@@ -7,10 +7,10 @@ export enum LetterStyle {
 export interface Yagl {
   firstName: string;
   lastName: string;
-  roles: string[];
+  roles: string;
   startDate: Date;
   endDate: Date;
-  lastDayAtOffice: Date;
+  lastDay: Date;
 }
 
 export const YAGL_KEYS: (keyof Yagl)[] = [
@@ -19,5 +19,5 @@ export const YAGL_KEYS: (keyof Yagl)[] = [
   'roles',
   'startDate',
   'endDate',
-  'lastDayAtOffice',
+  'lastDay',
 ];
