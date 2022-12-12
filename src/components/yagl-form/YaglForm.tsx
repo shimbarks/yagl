@@ -24,12 +24,14 @@ export const YaglForm: React.FC<YaglFormProps> = ({ register, errors }) => {
         {...register('phone')}
         error={errors.phone}
         label="phone number"
+        type="tel"
       />
-      <FormField {...register('email')} error={errors.email} />
+      <FormField {...register('email')} error={errors.email} type="email" />
       <FormField
         {...register('linkedIn')}
         error={errors.linkedIn}
         label="LinkedIn"
+        type="url"
       />
       <FormField
         {...register('roles')}
