@@ -30,7 +30,7 @@ export const App = () => {
     const data = getYaglFromTextarea();
 
     if (data) {
-      const entries = Object.entries(data) as Entries<Yagl>;
+      const entries = Object.entries(data) as Entries<Required<Yagl>>;
       entries.forEach(([key, value]) => setValue(key, value));
     }
   };

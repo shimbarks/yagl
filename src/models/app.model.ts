@@ -9,8 +9,8 @@ export interface Yagl {
   lastName: string;
   phone: string;
   email: string;
-  linkedIn: string;
-  roles: string;
+  linkedIn?: string;
+  roles?: string;
   startDate: string;
   endDate: string;
   lastDay: string;

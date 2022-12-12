@@ -14,8 +14,8 @@ export const yaglSchema: yup.SchemaOf<Yagl> = yup
       .required('phone number is required')
       .matches(phoneRegExp, 'phone number is invalid'),
     email: yup.string().email().required(),
-    linkedIn: yup.string().url().required('LinkedIn url is required'),
-    roles: yup.string().required('at least one role is required'),
+    linkedIn: yup.string().url(),
+    roles: yup.string(),
     startDate: yup.string().required('start date is required'),
     endDate: yup.string().required('end dater is required'),
     lastDay: yup.string().required('last day is required'),

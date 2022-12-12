@@ -14,29 +14,37 @@ export const YaglForm: React.FC<YaglFormProps> = ({ register, errors }) => {
         {...register('firstName')}
         error={errors.firstName}
         label="first name"
+        aria-required
       />
       <FormField
         {...register('lastName')}
         error={errors.lastName}
         label="last name"
+        aria-required
       />
       <FormField
         {...register('phone')}
         error={errors.phone}
         label="phone number"
         type="tel"
+        aria-required
       />
-      <FormField {...register('email')} error={errors.email} type="email" />
+      <FormField
+        {...register('email')}
+        error={errors.email}
+        type="email"
+        aria-required
+      />
       <FormField
         {...register('linkedIn')}
         error={errors.linkedIn}
-        label="LinkedIn"
+        label="LinkedIn (optional)"
         type="url"
       />
       <FormField
         {...register('roles')}
         error={errors.roles}
-        label="roles at the company"
+        label="roles at the company (optional)"
         pleaceholder="e.g. UI/UX designer, developer, team lead"
       />
       <FormField
@@ -44,18 +52,21 @@ export const YaglForm: React.FC<YaglFormProps> = ({ register, errors }) => {
         error={errors.startDate}
         type="date"
         label="working start date"
+        aria-required
       />
       <FormField
         {...register('endDate')}
         error={errors.endDate}
         type="date"
         label="working end date"
+        aria-required
       />
       <FormField
         {...register('lastDay')}
         error={errors.lastDay}
         type="date"
         label="last day at office"
+        aria-required
       />
     </>
   );

@@ -26,5 +26,5 @@ export function yaglToFunny(yagl: Yagl): string {
 
 export function yaglToString(form: Yagl): string {
   const entries = Object.entries(form) as Entries<Yagl>;
-  return entries.map((entry) => entry.join(' 👋 ')).join(' 💌\n');
+  return entries.map((entry) => entry?.join(' 👋 ')).join(' 💌\n');
 }
