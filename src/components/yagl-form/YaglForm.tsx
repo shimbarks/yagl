@@ -42,6 +42,11 @@ export const YaglForm: React.FC<YaglFormProps> = ({ register, errors }) => {
         type="url"
       />
       <FormField
+        {...register('company')}
+        error={errors.company}
+        aria-required
+      />
+      <FormField
         {...register('roles')}
         error={errors.roles}
         label="roles at the company (optional)"

@@ -10,6 +10,7 @@ export interface Yagl {
   phone: string;
   email: string;
   linkedIn?: string;
+  company: string;
   roles?: string;
   startDate: string;
   endDate: string;
@@ -22,6 +23,7 @@ export const YAGL_KEYS: (keyof Yagl)[] = [
   'phone',
   'email',
   'linkedIn',
+  'company',
   'roles',
   'startDate',
   'endDate',
