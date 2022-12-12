@@ -1,33 +1,57 @@
 import { useId, useRef, useState } from 'react';
-import { SubmitHandler } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import './App.scss';
 import { ToneTabs } from './components/tone-tabs/ToneTabs';
 import { YaglForm } from './components/yagl-form/YaglForm';
 import { Yagl } from './models/app.model';
+import { yaglDefaultValues, yaglResolver } from './schemas/yagl.schema';
 import { parseYagl, yaglToString } from './utils/utils';
 
 export const App = () => {
-  const textAreaRef = useRef<HTMLTextAreaElement>(null);
-  const [yagl, setYagl] = useState<Yagl>();
-  const [data, setData] = useState<Yagl>();
   const formId = useId();
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const [yagl, setYagl] = useState<Yagl>();
 
-  const generateLetter: SubmitHandler<Yagl> = (data) => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    setValue,
+  } = useForm<Yagl>({
+    defaultValues: yaglDefaultValues,
+    resolver: yaglResolver,
+  });
+
+  const getYaglFromTextarea = (): Yagl | null => {
+    return textareaRef.current && parseYagl(textareaRef.current.value);
+  };
+
+  const syncFormWithTextarea = () => {
+    const data = getYaglFromTextarea();
+
     if (data) {
-      setYagl(data);
-
-      if (textAreaRef.current) {
-        const yaglString = yaglToString(data);
-        textAreaRef.current.value = yaglString;
-      }
-    } else if (textAreaRef.current) {
-      setYagl(parseYagl(textAreaRef.current.value));
+      const entries = Object.entries(data) as Entries<Yagl>;
+      entries.forEach(([key, value]) => setValue(key, value));
     }
   };
 
-  const onTextAreaBlur = () => {
-    if (textAreaRef.current) {
-      setData(parseYagl(textAreaRef.current.value));
+  const syncTextareaWithForm = (formData: Yagl) => {
+    if (textareaRef.current) {
+      const yaglString = yaglToString(formData);
+      textareaRef.current.value = yaglString;
+    }
+  };
+
+  const generateLetter: SubmitHandler<Yagl> = (formData) => {
+    if (formData) {
+      setYagl(formData);
+      syncTextareaWithForm(formData);
+    } else {
+      const data = getYaglFromTextarea();
+
+      if (data) {
+        setYagl(data);
+      }
     }
   };
 
@@ -35,11 +59,17 @@ export const App = () => {
     <main className="app">
       <h1 className="heading">yet another goodbye letter</h1>
       <section className="data-section">
-        <YaglForm id={formId} onSubmit={generateLetter} data={data} />
+        <form
+          id={formId}
+          className="yagl-form"
+          onSubmit={handleSubmit(generateLetter)}
+        >
+          <YaglForm register={register} errors={errors} />
+        </form>
         <textarea
-          ref={textAreaRef}
+          ref={textareaRef}
           className="code-editor"
-          onBlur={onTextAreaBlur}
+          onBlur={syncFormWithTextarea}
         ></textarea>
       </section>
       <button type="submit" className="submit-button" form={formId}>

@@ -1,49 +1,15 @@
-import { yupResolver } from '@hookform/resolvers/yup';
-import { useEffect } from 'react';
-import { SubmitHandler, useForm } from 'react-hook-form';
-import * as yup from 'yup';
-import { SchemaOf } from 'yup';
+import { FieldErrorsImpl, UseFormRegister } from 'react-hook-form';
 import { Yagl } from '../../models/app.model';
 import { FormField } from '../form-field/FormField';
-import './YaglForm.scss';
-
-const schema: SchemaOf<Yagl> = yup
-  .object({
-    firstName: yup.string().required('first name is required'),
-    lastName: yup.string().required('last name is required'),
-    roles: yup.string().required('at least one role is required'),
-    startDate: yup.string().required('start date is required'),
-    endDate: yup.string().required('end dater is required'),
-    lastDay: yup.string().required('last day is required'),
-  })
-  .required();
 
 export interface YaglFormProps {
-  id: string;
-  onSubmit: SubmitHandler<Yagl>;
-  data?: Yagl;
+  register: UseFormRegister<Yagl>;
+  errors: Partial<FieldErrorsImpl<Yagl>>;
 }
 
-export const YaglForm: React.FC<YaglFormProps> = ({ id, onSubmit, data }) => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    setValue,
-  } = useForm<Yagl>({
-    defaultValues: schema.cast({}) as Yagl,
-    resolver: yupResolver(schema),
-  });
-
-  useEffect(() => {
-    if (data) {
-      const entries = Object.entries(data) as Entries<Yagl>;
-      entries.forEach(([key, value]) => setValue(key, value));
-    }
-  }, [data]);
-
+export const YaglForm: React.FC<YaglFormProps> = ({ register, errors }) => {
   return (
-    <form id={id} className="yagl-form" onSubmit={handleSubmit(onSubmit)}>
+    <>
       <FormField
         {...register('firstName')}
         error={errors.firstName}
@@ -78,6 +44,6 @@ export const YaglForm: React.FC<YaglFormProps> = ({ id, onSubmit, data }) => {
         type="date"
         label="last day at office"
       />
-    </form>
+    </>
   );
 };

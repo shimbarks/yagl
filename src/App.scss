@@ -45,6 +45,12 @@
   }
 }
 
+.yagl-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
 .submit-button {
   min-width: 180px;
   padding: 0.8em 1em;
