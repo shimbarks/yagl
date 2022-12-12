@@ -56,7 +56,7 @@ export const YaglForm: React.FC<YaglFormProps> = ({ register, errors }) => {
           {...register('roles')}
           error={errors.roles}
           label="roles at the company (optional)"
-          pleaceholder="e.g. UI/UX designer, developer, team lead"
+          pleaceholder="e.g. designer, developer, etc."
         />
         <FormField
           {...register('startDate')}

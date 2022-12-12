@@ -56,14 +56,22 @@
 }
 
 .actions {
+  width: min(100%, 500px);
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 3em;
+
+  > * {
+    flex: 1;
+  }
 }
 
 .app-button {
-  min-width: 180px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 200px;
   padding: 0.8em 1em;
   border-radius: 4px;
   font-family: $default-font;
@@ -71,6 +79,7 @@
   font-weight: bold;
   text-transform: capitalize;
   letter-spacing: 1px;
+  white-space: nowrap;
 }
 
 .submit-button {
