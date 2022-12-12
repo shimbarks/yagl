@@ -6,23 +6,13 @@ import { langContext } from '../../lang/lang.context';
 import { Language } from '../../lang/lang.model';
 import { LetterTone, Yagl } from '../../models/app.model';
 import { getEnumKeyByValue } from '../../utils/common.utils';
-import {
-  yaglToCasual,
-  yaglToFormal,
-  yaglToFunny,
-} from '../../utils/yagl.utils';
+import { yaglToLetter } from '../../utils/yagl.utils';
 import './ToneTabs.scss';
 
 export interface ToneTabsProps {
   yagl?: Yagl;
   resetFlag: boolean;
 }
-
-const yaglToneFuncMap: { [key in LetterTone]: (yagl: Yagl) => string } = {
-  [LetterTone.FORMAL]: yaglToFormal,
-  [LetterTone.CASUAL]: yaglToCasual,
-  [LetterTone.FUNNY]: yaglToFunny,
-};
 
 export const ToneTabs: React.FC<ToneTabsProps> = ({ yagl, resetFlag }) => {
   const ref = useRef<HTMLDivElement>(null);
@@ -46,11 +36,7 @@ export const ToneTabs: React.FC<ToneTabsProps> = ({ yagl, resetFlag }) => {
     );
   };
 
-  const renderTabPanel = (
-    tone: LetterTone,
-    genFunc: (yagl: Yagl) => string,
-    yagl?: Yagl
-  ) => {
+  const renderTabPanel = (tone: LetterTone, yagl?: Yagl) => {
     return (
       <Tabs.Content
         key={tone}
@@ -58,7 +44,7 @@ export const ToneTabs: React.FC<ToneTabsProps> = ({ yagl, resetFlag }) => {
         value={tone}
         contentEditable={true}
       >
-        {yagl && genFunc(yagl)}
+        {yagl && yaglToLetter({ yagl, lang: language, tone })}
       </Tabs.Content>
     );
   };
@@ -101,9 +87,7 @@ export const ToneTabs: React.FC<ToneTabsProps> = ({ yagl, resetFlag }) => {
       <Tabs.List className="tab-list">
         {Object.values(LetterTone).map((tone) => renderTabButton(tone))}
       </Tabs.List>
-      {Object.values(LetterTone).map((tone) =>
-        renderTabPanel(tone, yaglToneFuncMap[tone], yagl)
-      )}
+      {Object.values(LetterTone).map((tone) => renderTabPanel(tone, yagl))}
       <div className="tab-actions">
         <a
           className="icon-button"

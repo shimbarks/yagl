@@ -29,3 +29,8 @@ export const YAGL_KEYS: (keyof Yagl)[] = [
   'endDate',
   'lastDay',
 ];
+
+export interface Period {
+  unit: 'days' | 'weeks' | 'months' | 'years';
+  amount: number;
+}
