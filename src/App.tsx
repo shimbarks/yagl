@@ -5,7 +5,7 @@ import { ToneTabs } from './components/tone-tabs/ToneTabs';
 import { YaglForm } from './components/yagl-form/YaglForm';
 import { Yagl } from './models/app.model';
 import { yaglDefaultValues, yaglResolver } from './schemas/yagl.schema';
-import { parseYagl, yaglToString } from './utils/utils';
+import { parseYagl, yaglToString } from './utils/yagl.utils';
 
 export const App = () => {
   const formId = useId();

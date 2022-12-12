@@ -1,11 +1,11 @@
 import * as Tabs from '@radix-ui/react-tabs';
 import { LetterTone, Yagl } from '../../models/app.model';
+import { getEnumKeyByValue } from '../../utils/common.utils';
 import {
-  getEnumKeyByValue,
   yaglToCasual,
   yaglToFormal,
   yaglToFunny,
-} from '../../utils/utils';
+} from '../../utils/yagl.utils';
 import './ToneTabs.scss';
 
 export interface ToneTabsProps {

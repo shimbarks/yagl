@@ -1,10 +1,5 @@
 import { Yagl, YAGL_KEYS } from '../models/app.model';
 
-export function getEnumKeyByValue(enumObj: object, value: string): string {
-  const index = Object.values(enumObj).indexOf(value);
-  return Object.keys(enumObj)[index];
-}
-
 export function parseYagl(value: string): Yagl {
   const unfilteredEntries = value
     .split('💌')
