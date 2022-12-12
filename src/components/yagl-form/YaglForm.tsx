@@ -27,6 +27,11 @@ export const YaglForm: React.FC<YaglFormProps> = ({ register, errors }) => {
       />
       <FormField {...register('email')} error={errors.email} />
       <FormField
+        {...register('linkedIn')}
+        error={errors.linkedIn}
+        label="LinkedIn"
+      />
+      <FormField
         {...register('roles')}
         error={errors.roles}
         label="roles at the company"
