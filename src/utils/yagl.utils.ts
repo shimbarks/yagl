@@ -12,6 +12,11 @@ export function parseYagl(value: string): Yagl {
   return Object.fromEntries(yaglEntries);
 }
 
+export function yaglToString(form: Yagl): string {
+  const entries = Object.entries(form) as Entries<Yagl>;
+  return entries.map((entry) => entry?.join(' 👋 ')).join(' 💌\n');
+}
+
 export function yaglToFormal(yagl: Yagl): string {
   return `formal ${yagl.firstName}`;
 }
@@ -22,9 +27,4 @@ export function yaglToCasual(yagl: Yagl): string {
 
 export function yaglToFunny(yagl: Yagl): string {
   return `funny ${yagl.firstName}`;
-}
-
-export function yaglToString(form: Yagl): string {
-  const entries = Object.entries(form) as Entries<Yagl>;
-  return entries.map((entry) => entry?.join(' 👋 ')).join(' 💌\n');
 }
