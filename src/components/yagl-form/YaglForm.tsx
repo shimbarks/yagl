@@ -18,8 +18,14 @@ export const YaglForm: React.FC<YaglFormProps> = ({ register, errors }) => {
       <FormField
         {...register('lastName')}
         error={errors.lastName}
-        label=" last name"
+        label="last name"
       />
+      <FormField
+        {...register('phone')}
+        error={errors.phone}
+        label="phone number"
+      />
+      <FormField {...register('email')} error={errors.email} />
       <FormField
         {...register('roles')}
         error={errors.roles}
