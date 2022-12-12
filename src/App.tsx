@@ -17,6 +17,7 @@ export const App = () => {
     handleSubmit,
     formState: { errors },
     setValue,
+    reset,
   } = useForm<Yagl>({
     defaultValues: yaglDefaultValues,
     resolver: yaglResolver,
@@ -55,6 +56,15 @@ export const App = () => {
     }
   };
 
+  const handleReset = () => {
+    reset();
+    setYagl(undefined);
+
+    if (textareaRef.current) {
+      textareaRef.current.value = '';
+    }
+  };
+
   return (
     <main className="app">
       <h1 className="heading">yet another goodbye letter</h1>
@@ -72,9 +82,14 @@ export const App = () => {
           onBlur={syncFormWithTextarea}
         ></textarea>
       </section>
-      <button type="submit" className="submit-button" form={formId}>
-        generate letter
-      </button>
+      <div className="actions">
+        <button type="submit" className="submit-button" form={formId}>
+          generate letter
+        </button>
+        <button type="button" className="text-button" onClick={handleReset}>
+          reset
+        </button>
+      </div>
       <ToneTabs yagl={yagl} />
     </main>
   );
