@@ -2,6 +2,7 @@
 
 .tone-tabs {
   width: 100%;
+  position: relative;
 }
 
 .tab-list {
@@ -49,6 +50,7 @@
 .tab-panel {
   min-height: 300px;
   padding: 1em;
+  padding-inline-end: 40px;
   border: 1px solid;
   border-radius: 4px;
 
@@ -56,6 +58,18 @@
     outline-color: $blue-200;
     outline-offset: -2px;
   }
+}
+
+.tab-actions {
+  position: absolute;
+  top: 62px;
+  inset-inline-end: 2px;
+}
+
+.icon-button {
+  background-color: transparent;
+  border: none;
+  font-size: 24px;
 }
 
 @media screen and (max-width: 450px) {

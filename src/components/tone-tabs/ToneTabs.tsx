@@ -1,4 +1,5 @@
 import * as Tabs from '@radix-ui/react-tabs';
+import { useRef } from 'react';
 import { LetterTone, Yagl } from '../../models/app.model';
 import { getEnumKeyByValue } from '../../utils/common.utils';
 import {
@@ -52,8 +53,31 @@ const renderTabPanel = (
 };
 
 export const ToneTabs: React.FC<ToneTabsProps> = ({ yagl }) => {
+  const ref = useRef<HTMLDivElement>(null);
+
+  const copyToClipboard = () => {
+    const activeTab = ref.current?.querySelector(
+      '.tab-panel[data-state="active"]'
+    );
+
+    if (activeTab?.textContent) {
+      navigator.clipboard
+        .writeText(activeTab.textContent)
+        .then(() => alert('Text copied!'));
+    }
+  };
+
   return (
-    <Tabs.Root className="tone-tabs" defaultValue={LetterTone.CASUAL}>
+    <Tabs.Root ref={ref} className="tone-tabs" defaultValue={LetterTone.CASUAL}>
+      <div className="tab-actions">
+        <button
+          className="icon-button"
+          onClick={copyToClipboard}
+          title="copy to clipboard"
+        >
+          📋
+        </button>
+      </div>
       <Tabs.List className="tab-list">
         {Object.values(LetterTone).map((tone) => renderTabButton(tone))}
       </Tabs.List>
