@@ -62,16 +62,21 @@
   gap: 3em;
 }
 
-.submit-button {
+.app-button {
   min-width: 180px;
   padding: 0.8em 1em;
-  border: none;
   border-radius: 4px;
-  background-color: $pink-500;
-  color: white;
   font-family: $default-font;
   font-size: 20px;
+  font-weight: bold;
   text-transform: capitalize;
+  letter-spacing: 1px;
+}
+
+.submit-button {
+  border: none;
+  background-color: $pink-500;
+  color: white;
   transition: background-color 0.2s ease-in-out;
 
   &:hover {
@@ -85,17 +90,10 @@
 }
 
 .text-button {
-  min-width: 180px;
-  padding: 0.8em 1em;
   border: 2px solid;
   border-color: transparent;
-  border-radius: 4px;
   background-color: transparent;
   color: $pink-500;
-  font-family: $default-font;
-  font-size: 20px;
-  font-weight: bold;
-  text-transform: capitalize;
   transition: border-color 0.2s ease-in-out;
 
   &:focus-visible,

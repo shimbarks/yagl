@@ -85,10 +85,18 @@ export const App = () => {
         ></textarea>
       </section>
       <div className="actions">
-        <button type="submit" className="submit-button" form={formId}>
+        <button
+          type="submit"
+          className="app-button submit-button"
+          form={formId}
+        >
           generate letter
         </button>
-        <button type="button" className="text-button" onClick={handleReset}>
+        <button
+          type="button"
+          className="app-button text-button"
+          onClick={handleReset}
+        >
           reset
         </button>
       </div>
