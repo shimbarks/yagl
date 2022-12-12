@@ -1,4 +1,5 @@
 import { FieldErrorsImpl, UseFormRegister } from 'react-hook-form';
+import { useI18n } from 'react-simple-i18n';
 import { Yagl } from '../../models/app.model';
 import { FormField } from '../form-field/FormField';
 import './YaglForm.scss';
@@ -9,75 +10,79 @@ export interface YaglFormProps {
 }
 
 export const YaglForm: React.FC<YaglFormProps> = ({ register, errors }) => {
+  const { t } = useI18n();
+
   return (
     <>
       <fieldset>
-        <legend>personal info</legend>
+        <legend>{t('form.workHistory')}</legend>
+        <FormField
+          {...register('company')}
+          label={t('form.company')}
+          error={errors.company}
+          aria-required
+        />
+        <FormField
+          {...register('roles')}
+          label={t('form.roles')}
+          error={errors.roles}
+          pleaceholder={t('form.rolesPlaceholder')}
+        />
+        <FormField
+          {...register('startDate')}
+          label={t('form.startDate')}
+          error={errors.startDate}
+          type="date"
+          aria-required
+        />
+        <FormField
+          {...register('endDate')}
+          label={t('form.endDate')}
+          error={errors.endDate}
+          type="date"
+          aria-required
+        />
+        <FormField
+          {...register('lastDay')}
+          label={t('form.lastDay')}
+          error={errors.lastDay}
+          type="date"
+          aria-required
+        />
+      </fieldset>
+      <fieldset>
+        <legend>{t('form.contactInfo')}</legend>
         <FormField
           {...register('firstName')}
+          label={t('form.firstName')}
           error={errors.firstName}
-          label="first name"
           aria-required
         />
         <FormField
           {...register('lastName')}
+          label={t('form.lastName')}
           error={errors.lastName}
-          label="last name"
           aria-required
         />
         <FormField
           {...register('phone')}
+          label={t('form.phone')}
           error={errors.phone}
-          label="phone number"
           type="tel"
           aria-required
         />
         <FormField
           {...register('email')}
+          label={t('form.email')}
           error={errors.email}
           type="email"
           aria-required
         />
         <FormField
           {...register('linkedIn')}
+          label={t('form.linkedIn')}
           error={errors.linkedIn}
-          label="LinkedIn URL (optional)"
           type="url"
-        />
-      </fieldset>
-      <fieldset>
-        <legend>work history</legend>
-        <FormField
-          {...register('company')}
-          error={errors.company}
-          aria-required
-        />
-        <FormField
-          {...register('roles')}
-          error={errors.roles}
-          label="roles at the company (optional)"
-          pleaceholder="e.g. designer, developer, etc."
-        />
-        <FormField
-          {...register('startDate')}
-          error={errors.startDate}
-          type="date"
-          label="working start date"
-          aria-required
-        />
-        <FormField
-          {...register('endDate')}
-          error={errors.endDate}
-          type="date"
-          label="working end date"
-          aria-required
-        />
-        <FormField
-          {...register('lastDay')}
-          error={errors.lastDay}
-          type="date"
-          label="last day at office"
-          aria-required
         />
       </fieldset>
     </>

@@ -1,0 +1,21 @@
+@use '../../styles' as *;
+
+.header {
+  display: flex;
+}
+
+.toggle-lang {
+  margin-left: auto;
+  background-color: transparent;
+  border: none;
+  font-family: $default-font;
+  font-size: 20px;
+  font-weight: bold;
+  text-transform: capitalize;
+  letter-spacing: 1px;
+  text-decoration: underline;
+
+  &:hover {
+    color: $pink-700;
+  }
+}

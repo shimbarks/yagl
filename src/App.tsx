@@ -1,6 +1,8 @@
 import { useId, useRef, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { useI18n } from 'react-simple-i18n';
 import './App.scss';
+import { Header } from './components/header/Header';
 import { ToneTabs } from './components/tone-tabs/ToneTabs';
 import { YaglForm } from './components/yagl-form/YaglForm';
 import { Yagl } from './models/app.model';
@@ -12,6 +14,7 @@ export const App = () => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [yagl, setYagl] = useState<Yagl>();
   const [resetTabsFlag, setResetTabsFlag] = useState<boolean>(false);
+  const { t } = useI18n();
 
   const {
     register,
@@ -57,7 +60,7 @@ export const App = () => {
     }
   };
 
-  const handleReset = () => {
+  const handleRestart = () => {
     reset();
     setYagl(undefined);
     setResetTabsFlag((val) => !val);
@@ -68,39 +71,43 @@ export const App = () => {
   };
 
   return (
-    <main className="app">
-      <h1 className="heading">yet another goodbye letter</h1>
-      <section className="data-section">
-        <form
-          id={formId}
-          className="yagl-form"
-          onSubmit={handleSubmit(generateLetter)}
-        >
-          <YaglForm register={register} errors={errors} />
-        </form>
-        <textarea
-          ref={textareaRef}
-          className="code-editor"
-          onBlur={syncFormWithTextarea}
-        ></textarea>
-      </section>
-      <div className="actions">
-        <button
-          type="submit"
-          className="app-button submit-button"
-          form={formId}
-        >
-          generate letter
-        </button>
-        <button
-          type="button"
-          className="app-button text-button"
-          onClick={handleReset}
-        >
-          reset
-        </button>
-      </div>
-      <ToneTabs yagl={yagl} resetFlag={resetTabsFlag} />
-    </main>
+    <div className="app">
+      <Header />
+      <main className="main">
+        <h1 className="heading">{t('heading')}</h1>
+        <section className="data-section">
+          <form
+            id={formId}
+            className="yagl-form"
+            onSubmit={handleSubmit(generateLetter)}
+          >
+            <YaglForm register={register} errors={errors} />
+          </form>
+          <textarea
+            dir="ltr"
+            ref={textareaRef}
+            className="code-editor"
+            onBlur={syncFormWithTextarea}
+          ></textarea>
+        </section>
+        <div className="actions">
+          <button
+            type="submit"
+            className="app-button submit-button"
+            form={formId}
+          >
+            {t('actions.generateLetter')}
+          </button>
+          <button
+            type="button"
+            className="app-button text-button"
+            onClick={handleRestart}
+          >
+            {t('actions.restart')}
+          </button>
+        </div>
+        <ToneTabs yagl={yagl} resetFlag={resetTabsFlag} />
+      </main>
+    </div>
   );
 };
