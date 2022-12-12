@@ -32,7 +32,7 @@
   &__error {
     height: 1em;
     line-height: 1em;
-    color: red;
+    color: $red-500;
     &::first-letter {
       text-transform: uppercase;
     }

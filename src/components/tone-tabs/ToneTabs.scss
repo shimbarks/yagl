@@ -69,6 +69,10 @@
 }
 
 @media screen and (min-width: 451px) {
+  .tab-list {
+    padding-inline: 4px;
+  }
+
   .tab-button {
     min-width: 120px;
   }
