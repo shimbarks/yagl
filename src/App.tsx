@@ -11,6 +11,7 @@ export const App = () => {
   const formId = useId();
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [yagl, setYagl] = useState<Yagl>();
+  const [resetTabsFlag, setResetTabsFlag] = useState<boolean>(false);
 
   const {
     register,
@@ -59,6 +60,7 @@ export const App = () => {
   const handleReset = () => {
     reset();
     setYagl(undefined);
+    setResetTabsFlag((val) => !val);
 
     if (textareaRef.current) {
       textareaRef.current.value = '';
@@ -90,7 +92,7 @@ export const App = () => {
           reset
         </button>
       </div>
-      <ToneTabs yagl={yagl} />
+      <ToneTabs yagl={yagl} resetFlag={resetTabsFlag} />
     </main>
   );
 };

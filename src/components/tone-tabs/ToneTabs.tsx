@@ -1,5 +1,6 @@
 import * as Tabs from '@radix-ui/react-tabs';
 import { useRef } from 'react';
+import { useUpdateEffect } from '../../hooks/use-update-effect';
 import { LetterTone, Yagl } from '../../models/app.model';
 import { getEnumKeyByValue } from '../../utils/common.utils';
 import {
@@ -11,6 +12,7 @@ import './ToneTabs.scss';
 
 export interface ToneTabsProps {
   yagl?: Yagl;
+  resetFlag: boolean;
 }
 
 const yaglToneFuncMap: { [key in LetterTone]: (yagl: Yagl) => string } = {
@@ -52,8 +54,13 @@ const renderTabPanel = (
   );
 };
 
-export const ToneTabs: React.FC<ToneTabsProps> = ({ yagl }) => {
+export const ToneTabs: React.FC<ToneTabsProps> = ({ yagl, resetFlag }) => {
   const ref = useRef<HTMLDivElement>(null);
+
+  useUpdateEffect(() => {
+    const tabPanels = ref.current?.querySelectorAll('.tab-panel');
+    tabPanels?.forEach((panel) => (panel.textContent = ''));
+  }, [resetFlag]);
 
   const copyToClipboard = () => {
     const activeTab = ref.current?.querySelector(
