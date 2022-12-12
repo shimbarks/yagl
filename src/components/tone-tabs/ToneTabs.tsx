@@ -1,5 +1,5 @@
 import * as Tabs from '@radix-ui/react-tabs';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { useUpdateEffect } from '../../hooks/use-update-effect';
 import { LetterTone, Yagl } from '../../models/app.model';
 import { getEnumKeyByValue } from '../../utils/common.utils';
@@ -56,41 +56,61 @@ const renderTabPanel = (
 
 export const ToneTabs: React.FC<ToneTabsProps> = ({ yagl, resetFlag }) => {
   const ref = useRef<HTMLDivElement>(null);
+  const [href, setHref] = useState<string>('');
 
   useUpdateEffect(() => {
     const tabPanels = ref.current?.querySelectorAll('.tab-panel');
     tabPanels?.forEach((panel) => (panel.textContent = ''));
   }, [resetFlag]);
 
-  const copyToClipboard = () => {
+  const getLetterContent = () => {
     const activeTab = ref.current?.querySelector(
       '.tab-panel[data-state="active"]'
     );
 
-    if (activeTab?.textContent) {
-      navigator.clipboard
-        .writeText(activeTab.textContent)
-        .then(() => alert('Text copied!'));
+    return activeTab?.textContent;
+  };
+
+  const copyToClipboard = () => {
+    const content = getLetterContent();
+
+    if (content) {
+      navigator.clipboard.writeText(content).then(() => alert('Text copied!'));
     }
+  };
+
+  const constructHref = () => {
+    const content = getLetterContent() ?? '';
+    const subject = encodeURIComponent('Yet Another Goodbye Letter');
+    const mailTo = `mailto:?subject=${subject}&body=${content}`;
+    setHref(mailTo);
   };
 
   return (
     <Tabs.Root ref={ref} className="tone-tabs" defaultValue={LetterTone.CASUAL}>
-      <div className="tab-actions">
-        <button
-          className="icon-button"
-          onClick={copyToClipboard}
-          title="copy to clipboard"
-        >
-          📋
-        </button>
-      </div>
       <Tabs.List className="tab-list">
         {Object.values(LetterTone).map((tone) => renderTabButton(tone))}
       </Tabs.List>
       {Object.values(LetterTone).map((tone) =>
         renderTabPanel(tone, yaglToneFuncMap[tone], yagl)
       )}
+      <div className="tab-actions">
+        <a
+          className="icon-button"
+          href={href}
+          title="Send by email"
+          onClick={constructHref}
+        >
+          📧
+        </a>
+        <button
+          className="icon-button"
+          onClick={copyToClipboard}
+          title="Copy to clipboard"
+        >
+          📋
+        </button>
+      </div>
     </Tabs.Root>
   );
 };
