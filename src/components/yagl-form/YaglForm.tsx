@@ -41,7 +41,7 @@ export const YaglForm: React.FC<YaglFormProps> = ({ register, errors }) => {
         <FormField
           {...register('linkedIn')}
           error={errors.linkedIn}
-          label="LinkedIn (optional)"
+          label="LinkedIn URL (optional)"
           type="url"
         />
       </fieldset>
