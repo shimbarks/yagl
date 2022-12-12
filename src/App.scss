@@ -2,7 +2,7 @@
 
 .app {
   margin-inline: auto;
-  width: min(100%, 120ch);
+  width: min(100%, 140ch);
   min-height: 100%;
   padding: 2rem;
   display: flex;
@@ -26,14 +26,23 @@
   }
 
   > * {
-    flex-basis: 50%;
+    flex: 1;
+  }
+}
+
+.yagl-form {
+  display: flex;
+  gap: 1em;
+
+  @media screen and (max-width: 1000px) {
+    flex-direction: column;
   }
 }
 
 .code-editor {
-  min-height: 250px;
+  min-height: 300px;
   resize: none;
-  margin-block: 2px;
+  margin-top: 10px;
   border-radius: 4px;
   padding: 1em;
   background-color: black;
@@ -46,12 +55,6 @@
   }
 }
 
-.yagl-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1em;
-}
-
 .submit-button {
   min-width: 180px;
   padding: 0.8em 1em;
@@ -59,7 +62,7 @@
   border-radius: 4px;
   background-color: $pink-500;
   color: white;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: $default-font;
   font-size: 20px;
   text-transform: capitalize;
   transition: background-color 0.2s ease-in-out;

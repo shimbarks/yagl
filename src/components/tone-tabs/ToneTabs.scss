@@ -6,6 +6,10 @@
 
 .tab-list {
   display: flex;
+
+  @media screen and (max-width: 800px) {
+    justify-content: center;
+  }
 }
 
 .tab-button {
@@ -13,6 +17,7 @@
   background-color: transparent;
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
+  font-family: $default-font;
   font-size: 16px;
   font-weight: bold;
   text-transform: lowercase;
@@ -47,7 +52,8 @@
   border: 1px solid;
   border-radius: 4px;
 
-  &:focus {
+  &:focus-visible {
+    outline-color: $blue-200;
     outline-offset: -2px;
   }
 }

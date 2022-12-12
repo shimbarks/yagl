@@ -1,3 +1,5 @@
+@use '.' as *;
+
 html,
 body,
 #root {
@@ -6,5 +8,5 @@ body,
 
 body {
   overflow-y: auto;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: $default-font;
 }
