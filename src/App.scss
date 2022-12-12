@@ -57,7 +57,7 @@
   padding: 0.8em 1em;
   border: none;
   border-radius: 4px;
-  background-color: $purple-500;
+  background-color: $pink-500;
   color: white;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: 20px;
@@ -65,7 +65,7 @@
   transition: background-color 0.2s ease-in-out;
 
   &:hover {
-    background-color: $purple-700;
+    background-color: $pink-700;
   }
 
   &:focus-visible {
