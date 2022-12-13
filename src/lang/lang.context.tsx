@@ -3,9 +3,11 @@ import {
   Dispatch,
   ReactElement,
   SetStateAction,
+  useEffect,
   useState,
 } from 'react';
 import { createI18n, I18nProvider } from 'react-simple-i18n';
+import { useLocalStorage } from '../hooks/use-local-storage';
 import { langData } from './lang.data';
 import { Language } from './lang.model';
 
@@ -28,7 +30,16 @@ export interface LangContextProviderProps {
 export const LangContextProvider: React.FC<LangContextProviderProps> = ({
   children,
 }) => {
-  const [language, setLanguage] = useState<Language>(Language.ENGLISH);
+  const [langStorage, setLangStorage] = useLocalStorage<Language>(
+    'lang',
+    Language.ENGLISH
+  );
+  const [language, setLanguage] = useState<Language>(langStorage);
+
+  useEffect(() => {
+    setLangStorage(language);
+    document.dir = language === Language.ENGLISH ? 'ltr' : 'rtl';
+  }, [language]);
 
   return (
     <langContext.Provider

@@ -10,11 +10,9 @@ export const Header: React.FC = () => {
   const { language, setLanguage } = useContext(langContext);
 
   const switchLanguage = () => {
-    setLanguage((lang) => {
-      const isEnglish = lang === Language.ENGLISH;
-      document.dir = isEnglish ? 'rtl' : 'ltr';
-      return isEnglish ? Language.HEBREW : Language.ENGLISH;
-    });
+    setLanguage((lang) =>
+      lang === Language.ENGLISH ? Language.HEBREW : Language.ENGLISH
+    );
   };
 
   return (
