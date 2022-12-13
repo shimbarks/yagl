@@ -51,6 +51,7 @@
   padding-inline-end: 66px;
   border: 1px solid $blue-700;
   border-radius: 4px;
+  white-space: pre-line;
 
   &:focus-visible {
     outline-color: $blue-200;

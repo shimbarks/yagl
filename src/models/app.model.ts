@@ -11,7 +11,7 @@ export interface Yagl {
   email: string;
   linkedIn?: string;
   company: string;
-  roles?: string;
+  roles: string;
   startDate: string;
   endDate: string;
   lastDay: string;

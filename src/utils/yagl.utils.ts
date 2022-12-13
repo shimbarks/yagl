@@ -1,5 +1,6 @@
 import { Language } from '../lang/lang.model';
 import { LetterTone, Period, Yagl, YAGL_KEYS } from '../models/app.model';
+import { toneLangFuncMap } from './letter.utils';
 
 export function parseYagl(value: string): Yagl {
   const unfilteredEntries = value
@@ -27,11 +28,32 @@ export function yaglToLetter({
   lang: Language;
   tone: LetterTone;
 }): string {
-  const { amount, unit } = calcWorkingPeriod(yagl.startDate);
-  return `After ${amount} ${unit} ${tone} ${lang}`;
+  const roles = transformRoles(yagl.roles, lang);
+  const period = calcWorkingPeriod(yagl.startDate);
+  const func = toneLangFuncMap[lang][tone];
+  return func({ ...yagl, roles }, period);
 }
 
-export function calcWorkingPeriod(startDateString: string): Period {
+function transformRoles(roles: string, lang: Language): string {
+  const rolesList = roles.split(',').map((role) => role.trim());
+  let lastRole = '';
+
+  if (rolesList.length > 1) {
+    lastRole = rolesList.pop() as string;
+  }
+
+  let aggregatedRoles = rolesList.join(', ');
+
+  if (lastRole) {
+    aggregatedRoles += ` ${
+      lang === Language.ENGLISH ? 'and ' : 'ו'
+    }${lastRole}`;
+  }
+
+  return aggregatedRoles;
+}
+
+function calcWorkingPeriod(startDateString: string): Period {
   const now = new Date();
   const startDate = new Date(startDateString);
   const diff = now.getTime() - startDate.getTime();
