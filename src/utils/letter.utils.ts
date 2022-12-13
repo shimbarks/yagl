@@ -134,5 +134,21 @@ export function writeChillLetterHebrew(
   { firstName, phone, email, linkedIn, company, lastDay }: Yagl,
   { amount, unit }: Period
 ): string {
-  return ``;
+  return `מה ניש אחים יקרים שלי??
+
+  וואלה שמעתם נכון, אני עוזב את ${company}... 🙈🙉🙊
+  ${amount} ${unit}, אבל מי סופר..?
+
+  אני יודע שתתגעגעו אליי..! 😁
+  אני אקפוץ למשרד ביום ${lastDay} להגיד שלום.
+
+  יאללה תהיו בקשר נשמות, אוהב אתכם!
+
+  💙
+
+  ${firstName}
+
+  ${phone}
+  ${email}
+  ${linkedIn ?? ''}`;
 }
