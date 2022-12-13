@@ -1,7 +1,7 @@
 export enum LetterTone {
   FORMAL = '👔',
   CASUAL = '🤓',
-  CHILL = '💩',
+  CHILL = '🍹',
 }
 
 export interface Yagl {
