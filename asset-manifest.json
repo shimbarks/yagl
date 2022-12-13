@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/yagl/static/css/main.70743725.css",
-    "main.js": "/yagl/static/js/main.a8d8b115.js",
+    "main.js": "/yagl/static/js/main.43594f07.js",
     "static/js/787.be048b57.chunk.js": "/yagl/static/js/787.be048b57.chunk.js",
     "index.html": "/yagl/index.html",
     "main.70743725.css.map": "/yagl/static/css/main.70743725.css.map",
-    "main.a8d8b115.js.map": "/yagl/static/js/main.a8d8b115.js.map",
+    "main.43594f07.js.map": "/yagl/static/js/main.43594f07.js.map",
     "787.be048b57.chunk.js.map": "/yagl/static/js/787.be048b57.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.70743725.css",
-    "static/js/main.a8d8b115.js"
+    "static/js/main.43594f07.js"
   ]
 }
