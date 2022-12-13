@@ -1,3 +1,4 @@
+import { WeekDays } from '../lang/lang.data';
 import { Language } from '../lang/lang.model';
 import { LetterTone, Period, Yagl, YAGL_KEYS } from '../models/app.model';
 import { toneLangFuncMap } from './letter.utils';
@@ -29,9 +30,16 @@ export function yaglToLetter({
   tone: LetterTone;
 }): string {
   const roles = transformRoles(yagl.roles, lang);
+  const lastDay = transformLastDay(yagl.lastDay, lang);
   const period = calcWorkingPeriod(yagl.startDate);
   const func = toneLangFuncMap[lang][tone];
-  return func({ ...yagl, roles }, period);
+  return func({ ...yagl, roles, lastDay }, period);
+}
+
+function transformLastDay(lastDay: string, lang: Language): string {
+  const date = new Date(lastDay);
+  const weekDay = WeekDays[lang][date.getDay()];
+  return `${weekDay}, ${date.getDate()}/${date.getMonth() + 1}`;
 }
 
 function transformRoles(roles: string, lang: Language): string {

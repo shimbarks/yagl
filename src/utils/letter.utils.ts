@@ -36,7 +36,7 @@ export function writeFormalLetterEnglish(
 }
 
 export function writeCasualLetterEnglish(
-  { firstName, phone, email, linkedIn, company }: Yagl,
+  { firstName, phone, email, linkedIn, company, lastDay }: Yagl,
   { amount, unit }: Period
 ): string {
   return `Hello everyone,
@@ -49,6 +49,8 @@ export function writeCasualLetterEnglish(
   Hope to stay in touch, you can reach me by phone, email or however you'd like to.
   If we haven't connected yet via LinkedIn you're welcome to look for me.
 
+  My last day in the office will be ${lastDay}, I'll be organizing a small farewell with some snacks, come and join!
+
   Yours,
 
   ${firstName}
@@ -60,7 +62,7 @@ export function writeCasualLetterEnglish(
 }
 
 export function writeFunnyLetterEnglish(
-  { firstName, phone, email, linkedIn, company }: Yagl,
+  { firstName, phone, email, linkedIn, company, lastDay }: Yagl,
   { amount, unit }: Period
 ): string {
   return `Yo, what's up bro/sis??
@@ -69,6 +71,8 @@ export function writeFunnyLetterEnglish(
   ${amount} ${unit}, but who counts..?
 
   I know you'll miss me..! 😁
+  I'm gonna pass by the office on ${lastDay}, see ya there.
+  
   Be in touch, love you guys!
 
   💙

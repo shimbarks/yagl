@@ -87,3 +87,16 @@ export const langData = {
     },
   },
 };
+
+export const WeekDays = {
+  [Language.ENGLISH]: [
+    'Sunday',
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+  ],
+  [Language.HEBREW]: ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי', 'שבת'],
+};
