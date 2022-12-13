@@ -39,7 +39,7 @@ export function writeCasualLetterEnglish(
   { firstName, phone, email, linkedIn, company, lastDay }: Yagl,
   { amount, unit }: Period
 ): string {
-  return `Hello everyone,
+  return `Hello everyone!
   
   ${amount} ${unit} have passed and it's time for me to go.
 
@@ -65,7 +65,7 @@ export function writeChillLetterEnglish(
   { firstName, phone, email, linkedIn, company, lastDay }: Yagl,
   { amount, unit }: Period
 ): string {
-  return `Yo, what's up bro/sis??
+  return `Yo, what's up bro/sis??!
 
   Yeah it's true, I'm leaving ${company}... 🙈🙉🙊
   ${amount} ${unit}, but who counts..?
@@ -109,7 +109,7 @@ export function writeCasualLetterHebrew(
   { firstName, phone, email, linkedIn, company, lastDay }: Yagl,
   { amount, unit }: Period
 ): string {
-  return `הי לכולם,
+  return `הי לכולם!
   
   ${amount} ${unit} חלפו וגם זמני הגיע.
 
@@ -134,7 +134,7 @@ export function writeChillLetterHebrew(
   { firstName, phone, email, linkedIn, company, lastDay }: Yagl,
   { amount, unit }: Period
 ): string {
-  return `מה ניש אחים יקרים שלי??
+  return `מה ניש אחים יקרים שלי??!
 
   וואלה שמעתם נכון, אני עוזב את ${company}... 🙈🙉🙊
   ${amount} ${unit}, אבל מי סופר..?
