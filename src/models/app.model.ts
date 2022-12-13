@@ -12,8 +12,8 @@ export interface Yagl {
   linkedIn?: string;
   company: string;
   roles: string;
+  lob?: string;
   startDate: string;
-  endDate: string;
   lastDay: string;
 }
 
@@ -25,8 +25,8 @@ export const YAGL_KEYS: (keyof Yagl)[] = [
   'linkedIn',
   'company',
   'roles',
+  'lob',
   'startDate',
-  'endDate',
   'lastDay',
 ];
 

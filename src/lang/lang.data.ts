@@ -28,8 +28,8 @@ export const langData = {
       company: 'company name',
       roles: 'role/s',
       rolesPlaceholder: 'e.g. designer, developer',
+      lob: 'LOB (optional)',
       startDate: 'working start date',
-      endDate: 'working end date',
       lastDay: 'last day at office',
     },
     actions: {
@@ -70,8 +70,8 @@ export const langData = {
       company: 'שם החברה',
       roles: 'תפקיד/ים',
       rolesPlaceholder: 'לדוגמה: מעצב, מפתח',
+      lob: 'חטיבה (רשות)',
       startDate: 'תחילת העסקה',
-      endDate: 'סיום העסקה',
       lastDay: 'יום אחרון במשרד',
     },
     actions: {

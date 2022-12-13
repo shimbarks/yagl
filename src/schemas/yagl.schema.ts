@@ -17,8 +17,8 @@ export const yaglSchema: yup.SchemaOf<Yagl> = yup
     linkedIn: yup.string().url(),
     company: yup.string().required().default('AT&T'),
     roles: yup.string().required('at least one role is required'),
+    lob: yup.string(),
     startDate: yup.string().required('start date is required'),
-    endDate: yup.string().required('end dater is required'),
     lastDay: yup.string().required('last day is required'),
   })
   .required();
