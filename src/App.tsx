@@ -1,10 +1,11 @@
-import { useId, useRef, useState } from 'react';
+import { useEffect, useId, useRef, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useI18n } from 'react-simple-i18n';
 import './App.scss';
 import { Header } from './components/header/Header';
 import { ToneTabs } from './components/tone-tabs/ToneTabs';
 import { YaglForm } from './components/yagl-form/YaglForm';
+import { useLocalStorage } from './hooks/use-local-storage';
 import { Yagl } from './models/app.model';
 import { yaglDefaultValues, yaglResolver } from './schemas/yagl.schema';
 import { parseYagl, yaglToString } from './utils/yagl.utils';
@@ -13,8 +14,16 @@ export const App = () => {
   const formId = useId();
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [yagl, setYagl] = useState<Yagl>();
+  const [yaglStorage, setYaglStorage] = useLocalStorage<string>('yagl', '');
   const [resetTabsFlag, setResetTabsFlag] = useState<boolean>(false);
   const { t } = useI18n();
+
+  useEffect(() => {
+    if (textareaRef.current) {
+      textareaRef.current.value = yaglStorage;
+      syncFormWithTextarea();
+    }
+  }, []);
 
   const {
     register,
@@ -58,12 +67,17 @@ export const App = () => {
         setYagl(data);
       }
     }
+
+    if (textareaRef.current) {
+      setYaglStorage(textareaRef.current?.value);
+    }
   };
 
   const handleRestart = () => {
     reset();
     setYagl(undefined);
     setResetTabsFlag((val) => !val);
+    setYaglStorage('');
 
     if (textareaRef.current) {
       textareaRef.current.value = '';
