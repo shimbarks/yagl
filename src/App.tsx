@@ -75,6 +75,7 @@ export const App = () => {
       <Header />
       <main className="main">
         <h1 className="heading">{t('heading')}</h1>
+        <p className="description">{t('description')}</p>
         <section className="data-section">
           <form
             id={formId}

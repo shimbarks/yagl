@@ -23,6 +23,11 @@
   text-transform: capitalize;
 }
 
+.description {
+  white-space: pre-line;
+  font-size: 18px;
+}
+
 .data-section {
   width: 100%;
   display: flex;
