@@ -31,6 +31,14 @@ export const YAGL_KEYS: (keyof Yagl)[] = [
 ];
 
 export interface Period {
-  unit: 'days' | 'weeks' | 'months' | 'years';
+  unit:
+    | 'days'
+    | 'weeks'
+    | 'months'
+    | 'years'
+    | 'ימים'
+    | 'שבועות'
+    | 'חודשים'
+    | 'שנים';
   amount: number;
 }

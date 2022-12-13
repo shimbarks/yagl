@@ -86,21 +86,34 @@ export function writeChillLetterEnglish(
 }
 
 export function writeFormalLetterHebrew(
-  yagl: Yagl,
+  { company, roles, firstName, lastName, email, linkedIn }: Yagl,
   { amount, unit }: Period
 ): string {
-  return ``;
+  return `עמיתים יקרים,
+
+  אחרי ${amount} ${unit} ב-${company}, החלטתי לעבור לאתגר הבא שלי.
+
+  בתור ${roles} בלא מעט פרויקטים, פגשתי הרבה אנשים טובים בארגון הזה ואני אסיר תודה על כך, היה לי לעונג לעבוד לצידכם.
+
+  במסע המדהים הזה, חווינו יחד הצלחות וכישלונות, אבל תמיד המשכנו הלאה.
+  כדבריו של וינסטון צ'רצ'יל: "ההצלחה אינה סופית, הכישלון אינו קטלני: האומץ להמשיך הוא שקובע".
+
+  בברכה,
+ 
+  ${firstName} ${lastName}
+  ${email}
+  ${linkedIn ?? ''}`;
 }
 
 export function writeCasualLetterHebrew(
-  yagl: Yagl,
+  { firstName, phone, email, linkedIn, company, lastDay }: Yagl,
   { amount, unit }: Period
 ): string {
   return ``;
 }
 
 export function writeChillLetterHebrew(
-  yagl: Yagl,
+  { firstName, phone, email, linkedIn, company, lastDay }: Yagl,
   { amount, unit }: Period
 ): string {
   return ``;

@@ -31,7 +31,7 @@ export function yaglToLetter({
 }): string {
   const roles = transformRoles(yagl.roles, lang);
   const lastDay = transformLastDay(yagl.lastDay, lang);
-  const period = calcWorkingPeriod(yagl.startDate);
+  const period = calcWorkingPeriod(yagl.startDate, lang);
   const func = toneLangFuncMap[lang][tone];
   return func({ ...yagl, roles, lastDay }, period);
 }
@@ -61,27 +61,28 @@ function transformRoles(roles: string, lang: Language): string {
   return aggregatedRoles;
 }
 
-function calcWorkingPeriod(startDateString: string): Period {
+function calcWorkingPeriod(startDateString: string, lang: Language): Period {
   const now = new Date();
   const startDate = new Date(startDateString);
   const diff = now.getTime() - startDate.getTime();
   const days = Math.ceil(diff / (1000 * 3600 * 24));
   const months = Math.round(days / 30);
+  const isEnglish = lang === Language.ENGLISH;
 
   switch (true) {
     case days < 7:
       return {
-        unit: 'days',
+        unit: isEnglish ? 'days' : 'ימים',
         amount: days,
       };
     case days < 28:
       return {
-        unit: 'weeks',
+        unit: isEnglish ? 'weeks' : 'שבועות',
         amount: Math.round(days / 7),
       };
     case months < 12:
       return {
-        unit: 'months',
+        unit: isEnglish ? 'months' : 'חודשים',
         amount: months,
       };
     default: {
@@ -90,7 +91,7 @@ function calcWorkingPeriod(startDateString: string): Period {
       const years = decimal === '5' ? +yearsString : Math.round(days / 365);
 
       return {
-        unit: 'years',
+        unit: isEnglish ? 'years' : 'שנים',
         amount: years,
       };
     }
