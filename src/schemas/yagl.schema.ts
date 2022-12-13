@@ -7,19 +7,19 @@ const phoneRegExp =
 
 export const yaglSchema: yup.SchemaOf<Yagl> = yup
   .object({
-    firstName: yup.string().required('first name is a required field'),
-    lastName: yup.string().required('last name is a required field'),
+    firstName: yup.string().required('first name is required'),
+    lastName: yup.string().required('last name is required'),
     phone: yup
       .string()
-      .required('phone number is a required field')
+      .required('phone number is required')
       .matches(phoneRegExp, 'phone number is invalid'),
-    email: yup.string().email().required(),
+    email: yup.string().email().required('email is required'),
     linkedIn: yup.string().url(),
     company: yup.string().required().default('AT&T'),
-    roles: yup.string().required(),
-    startDate: yup.string().required('start date is a required field'),
-    endDate: yup.string().required('end dater is a required field'),
-    lastDay: yup.string().required('last day is a required field'),
+    roles: yup.string().required('at least one role is required'),
+    startDate: yup.string().required('start date is required'),
+    endDate: yup.string().required('end dater is required'),
+    lastDay: yup.string().required('last day is required'),
   })
   .required();
 
