@@ -23,6 +23,12 @@ export const YaglForm: React.FC<YaglFormProps> = ({ register, errors }) => {
           aria-required
         />
         <FormField
+          {...register('lob')}
+          label={t('form.lob')}
+          error={errors.lob}
+          pleaceholder="ET, Consumer, NetCom"
+        />
+        <FormField
           {...register('roles')}
           label={t('form.roles')}
           error={errors.roles}
@@ -32,13 +38,6 @@ export const YaglForm: React.FC<YaglFormProps> = ({ register, errors }) => {
           {...register('startDate')}
           label={t('form.startDate')}
           error={errors.startDate}
-          type="date"
-          aria-required
-        />
-        <FormField
-          {...register('endDate')}
-          label={t('form.endDate')}
-          error={errors.endDate}
           type="date"
           aria-required
         />
