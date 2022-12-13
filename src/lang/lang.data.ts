@@ -41,7 +41,7 @@ export const langData = {
     tones: {
       [LetterTone.FORMAL]: 'formal',
       [LetterTone.CASUAL]: 'casual',
-      [LetterTone.FUNNY]: 'funny',
+      [LetterTone.CHILL]: 'chill',
     },
   },
   [Language.HEBREW]: {
@@ -83,7 +83,7 @@ export const langData = {
     tones: {
       [LetterTone.FORMAL]: 'רשמי',
       [LetterTone.CASUAL]: 'סאחי',
-      [LetterTone.FUNNY]: 'סטלן',
+      [LetterTone.CHILL]: 'סטלן',
     },
   },
 };

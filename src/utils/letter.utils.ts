@@ -5,12 +5,12 @@ export const toneLangFuncMap = {
   [Language.ENGLISH]: {
     [LetterTone.FORMAL]: writeFormalLetterEnglish,
     [LetterTone.CASUAL]: writeCasualLetterEnglish,
-    [LetterTone.FUNNY]: writeFunnyLetterEnglish,
+    [LetterTone.CHILL]: writeChillLetterEnglish,
   },
   [Language.HEBREW]: {
     [LetterTone.FORMAL]: writeFormalLetterHebrew,
     [LetterTone.CASUAL]: writeCasualLetterHebrew,
-    [LetterTone.FUNNY]: writeFunnyLetterHebrew,
+    [LetterTone.CHILL]: writeChillLetterHebrew,
   },
 };
 
@@ -61,7 +61,7 @@ export function writeCasualLetterEnglish(
   `;
 }
 
-export function writeFunnyLetterEnglish(
+export function writeChillLetterEnglish(
   { firstName, phone, email, linkedIn, company, lastDay }: Yagl,
   { amount, unit }: Period
 ): string {
@@ -99,7 +99,7 @@ export function writeCasualLetterHebrew(
   return ``;
 }
 
-export function writeFunnyLetterHebrew(
+export function writeChillLetterHebrew(
   yagl: Yagl,
   { amount, unit }: Period
 ): string {
