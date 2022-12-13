@@ -14,7 +14,7 @@ export const langData = {
     4. Keys that don't appear in the form are ignored.
     
     After you filled the form or wrote the yagl code, click to generate your personal goodbye letter.
-    You can choose one of three different tones to your letter.
+    You can choose one of three different flavours to your letter.
     
     You can also edit the generated content as you wish, and then copy it to the clipboard or send it right away by email!`,
     form: {
