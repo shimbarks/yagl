@@ -109,7 +109,25 @@ export function writeCasualLetterHebrew(
   { firstName, phone, email, linkedIn, company, lastDay }: Yagl,
   { amount, unit }: Period
 ): string {
-  return ``;
+  return `הי לכולם,
+  
+  ${amount} ${unit} חלפו וגם זמני הגיע.
+
+  היה תענוג לעבוד איתכם כאן ב-${company}.
+  אני אתגעגע להפסקות הקפה שלנו, ל-Happy Hours ולמשחקי הפלייסטיישן...
+
+  שמרו על קשר, מוזמנים לדבר איתי בטלפון, במייל או איך שבא לכם.
+  אם אנחנו עדיין לא חברים בלינקדאין אתם מוזמנים לחפש אותי שם.
+
+  היום האחרון שלי במשרד יהיה יום ${lastDay}, נארגן פריסה קטנה עם קצת חטיפים, אשמח שתצטרפו!
+
+  שלכם,
+
+  ${firstName}
+ 
+  ${email}
+  ${phone}
+  ${linkedIn ?? ''}`;
 }
 
 export function writeChillLetterHebrew(
