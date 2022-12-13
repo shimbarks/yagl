@@ -36,10 +36,26 @@ export function writeFormalLetterEnglish(
 }
 
 export function writeCasualLetterEnglish(
-  yagl: Yagl,
+  { firstName, phone, email, linkedIn }: Yagl,
   { amount, unit }: Period
 ): string {
-  return ``;
+  return `Hello everyone,
+  
+  ${amount} ${unit} have passed and it's time for me to go.
+
+  It's been a pleasure working with you guys, I'll miss our coffee breaks, the happy hours and the PlayStation games...
+
+  Hope to stay in touch, you can reach me by phone, email or however you'd like to.
+  If we haven't connected yet via LinkedIn you're welcome to look for me.
+
+  Yours,
+
+  ${firstName}
+  
+  ${email}
+  ${phone}
+  ${linkedIn ?? ''}
+  `;
 }
 
 export function writeFunnyLetterEnglish(
