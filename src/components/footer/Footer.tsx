@@ -5,7 +5,9 @@ import './Footer.scss';
 export const Footer: React.FC = () => {
   return (
     <footer lang="en" dir="ltr" className="footer">
-      Made with 💛 by Shimbarks
+      <div className="footer__text">
+        Made with 💛 by <span className="shimbarks">Shimbarks</span>
+      </div>
       <div className="footer__links">
         <a
           className="footer__link"

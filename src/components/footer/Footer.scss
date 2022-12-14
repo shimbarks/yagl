@@ -9,10 +9,16 @@
   gap: 2em;
   line-height: 1;
 
+  &__text {
+    display: flex;
+    align-items: center;
+    gap: 0.6em;
+  }
+
   &__links {
     display: flex;
     align-items: center;
-    gap: 0.5em;
+    gap: 0.8em;
   }
 
   &__link {
@@ -28,7 +34,14 @@
     padding-block: 1rem;
   }
 
-  @media screen and (max-width: 800px) {
+  @media screen and (max-width: 1024px) {
     justify-content: space-between;
   }
+}
+
+.shimbarks {
+  font-family: $hand-font;
+  font-size: 2em;
+  rotate: -5deg;
+  translate: 0 -1px;
 }
