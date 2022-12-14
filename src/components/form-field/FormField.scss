@@ -9,6 +9,8 @@
     font-size: 18px;
     font-weight: 400;
     white-space: nowrap;
+    line-height: 1.8;
+
     &::first-letter {
       text-transform: uppercase;
     }
@@ -20,7 +22,7 @@
     align-items: center;
     height: 34px;
     padding-inline: 0.6em;
-    border: solid 2px;
+    border: solid 1px;
     border-radius: 4px;
     background-color: white;
     font-size: 18px;
@@ -28,7 +30,7 @@
 
     &:focus-visible {
       outline-offset: 0;
-      outline: 2px solid $blue-500;
+      outline: 1px solid $blue-500;
       border-color: $blue-500;
     }
   }
