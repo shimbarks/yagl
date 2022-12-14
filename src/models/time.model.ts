@@ -1,12 +1,12 @@
+export type EnglishTimeUnit = 'day' | 'week' | 'month' | 'year';
+export type HebrewTimeUnit = 'ימים' | 'שבועות' | 'חודשים' | 'שנים';
+
 export interface Period {
   unit: EnglishTimeUnit | HebrewTimeUnit;
   amount: number;
 }
 
-export type EnglishTimeUnit = 'day' | 'week' | 'month' | 'year';
-export type HebrewTimeUnit = 'ימים' | 'שבועות' | 'חודשים' | 'שנים';
-
-export const HebrewTimeUnitsMap = {
+export const HEBREW_TIME_UNITS_MAP = {
   single: {
     ימים: 'יום',
     שבועות: 'שבוע',

@@ -1,7 +1,7 @@
 import { Language } from '../lang/lang.model';
 import {
   HebrewTimeUnit,
-  HebrewTimeUnitsMap,
+  HEBREW_TIME_UNITS_MAP,
   Period,
 } from '../models/time.model';
 
@@ -48,7 +48,7 @@ export function calcWorkingPeriod(
 export function transformHebrewPeriod({ amount, unit }: Period): string {
   if (amount === 1 || amount === 2) {
     const key = amount === 1 ? 'single' : 'double';
-    return HebrewTimeUnitsMap[key][unit as HebrewTimeUnit];
+    return HEBREW_TIME_UNITS_MAP[key][unit as HebrewTimeUnit];
   }
 
   return `${amount} ${unit}`;
