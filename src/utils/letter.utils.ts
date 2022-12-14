@@ -15,14 +15,18 @@ export const toneLangFuncMap = {
 };
 
 export function composeFormalLetterEnglish(
-  { company, roles, firstName, lastName, email, linkedIn }: Yagl,
+  { company, lob, roles, firstName, lastName, email, linkedIn }: Yagl,
   { amount, unit }: Period
 ): string {
   return `Dear colleagues,
 
   After ${amount} ${unit} at ${company}, I have decided to move on to my next challenge.
 
-  As ${roles} in quite a few projects, I met a lot of good people in this organization and I am thankful for that.
+  As ${roles} in quite a few projects${composeLobPhrase({
+    lang: Language.ENGLISH,
+    tone: LetterTone.FORMAL,
+    lob,
+  })}, I met a lot of good people in this organization and I am thankful for that.
 
   In this incredible journey, we've experienced together successes and failures, but we always kept moving forward.
   As Winston Churchill said: "Success is not final, failure is not fatal: it is the courage to continue that counts".
@@ -45,7 +49,7 @@ export function composeCasualLetterEnglish(
 
   It's been a pleasure working with you guys here at ${company}.
   I'll miss our coffee breaks, the happy hours and the PlayStation games...
-  ${composeLobPhrase(Language.ENGLISH, lob)}
+  ${composeLobPhrase({ lang: Language.ENGLISH, tone: LetterTone.CASUAL, lob })}
   Hope to stay in touch, you can reach me by phone, email or however you'd like to.
   If we haven't connected yet via LinkedIn you're welcome to look for me.
 
@@ -62,7 +66,7 @@ export function composeCasualLetterEnglish(
 }
 
 export function composeChillLetterEnglish(
-  { firstName, phone, email, linkedIn, company, lastDay }: Yagl,
+  { firstName, phone, email, linkedIn, company, lob, lastDay }: Yagl,
   { amount, unit }: Period
 ): string {
   return `Yo, what's up bro/sis??!
@@ -73,7 +77,11 @@ export function composeChillLetterEnglish(
   I know you'll miss me..! 😁
   I'm gonna pass by the office on ${lastDay}, see ya there.
   
-  Be in touch, love you guys!
+  Be in touch,${composeLobPhrase({
+    lang: Language.ENGLISH,
+    tone: LetterTone.CHILL,
+    lob,
+  })} love you guys!
 
   💙
 
@@ -86,14 +94,18 @@ export function composeChillLetterEnglish(
 }
 
 export function composeFormalLetterHebrew(
-  { company, roles, firstName, lastName, email, linkedIn }: Yagl,
+  { company, lob, roles, firstName, lastName, email, linkedIn }: Yagl,
   { amount, unit }: Period
 ): string {
   return `עמיתים יקרים,
 
   אחרי ${amount} ${unit} ב-${company}, החלטתי לעבור לאתגר הבא שלי.
 
-  בתור ${roles} בלא מעט פרויקטים, פגשתי הרבה אנשים טובים בארגון הזה ואני אסיר תודה על כך, היה לי לעונג לעבוד לצידכם.
+  בתור ${roles} בלא מעט פרויקטים${composeLobPhrase({
+    lang: Language.HEBREW,
+    tone: LetterTone.FORMAL,
+    lob,
+  })}, פגשתי הרבה אנשים טובים בארגון הזה ואני אסיר תודה על כך, היה לי לעונג לעבוד לצידכם.
 
   במסע המדהים הזה, חווינו יחד הצלחות וכישלונות, אבל תמיד המשכנו הלאה.
   כדבריו של וינסטון צ'רצ'יל: "ההצלחה אינה סופית, הכישלון אינו קטלני: האומץ להמשיך הוא שקובע".
@@ -115,7 +127,7 @@ export function composeCasualLetterHebrew(
 
   היה תענוג לעבוד איתכם כאן ב-${company}.
   אני אתגעגע להפסקות הקפה שלנו, ל-Happy Hours ולמשחקי הפלייסטיישן...
-  ${composeLobPhrase(Language.HEBREW, lob)}
+  ${composeLobPhrase({ lang: Language.HEBREW, tone: LetterTone.CASUAL, lob })}
   שמרו על קשר, מוזמנים לדבר איתי בטלפון, במייל או איך שבא לכם.
   אם אנחנו עדיין לא חברים בלינקדאין אתם מוזמנים לחפש אותי שם.
 
@@ -131,7 +143,7 @@ export function composeCasualLetterHebrew(
 }
 
 export function composeChillLetterHebrew(
-  { firstName, phone, email, linkedIn, company, lastDay }: Yagl,
+  { firstName, phone, email, linkedIn, company, lob, lastDay }: Yagl,
   { amount, unit }: Period
 ): string {
   return `מה ניש אחים יקרים שלי??!
@@ -142,7 +154,11 @@ export function composeChillLetterHebrew(
   אני יודע שתתגעגעו אליי..! 😁
   אני אקפוץ למשרד ביום ${lastDay} להגיד שלום.
 
-  יאללה תהיו בקשר נשמות, אוהב אתכם!
+  יאללה תהיו בקשר נשמות,${composeLobPhrase({
+    lang: Language.HEBREW,
+    tone: LetterTone.CHILL,
+    lob,
+  })} אוהב אתכם!
 
   💙
 
@@ -153,16 +169,45 @@ export function composeChillLetterHebrew(
   ${linkedIn ?? ''}`;
 }
 
-function composeLobPhrase(lang: Language, lob?: string): string {
-  const firstLob = lob?.split(',')[0];
-
-  if (firstLob) {
-    return lang === Language.ENGLISH
-      ? `A special thanks to ${firstLob} folks.
-      `
-      : `תודה מיוחדת לחבר'ה מ-${firstLob}.
-      `;
-  } else {
+function composeLobPhrase({
+  lang,
+  tone,
+  lob,
+}: {
+  lang: Language;
+  tone: LetterTone;
+  lob?: string;
+}): string {
+  if (!lob) {
     return '';
   }
+
+  const lobList = lob?.split(',');
+  const isEnglish = lang === Language.ENGLISH;
+
+  if (tone === LetterTone.FORMAL) {
+    if (lobList.length === 1) {
+      return isEnglish ? ` in the ${lob} department` : ` בחטיבת ${lob}`;
+    } else {
+      return isEnglish
+        ? ` in ${lobList.length} different departments`
+        : ` ב-${lobList.length} חטיבות שונות`;
+    }
+  }
+
+  const firstLob = lobList[0];
+
+  if (firstLob) {
+    if (tone === LetterTone.CASUAL) {
+      return isEnglish
+        ? `A special thanks to ${firstLob} folks.
+        `
+        : `תודה מיוחדת לחבר'ה מ-${firstLob}.
+        `;
+    } else if (tone === LetterTone.CHILL) {
+      return isEnglish ? ` ${firstLob} rocks 🤘!` : ` אין על ${firstLob} 🤘!`;
+    }
+  }
+
+  return '';
 }

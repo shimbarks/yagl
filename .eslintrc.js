@@ -24,7 +24,7 @@ module.exports = {
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/no-unused-vars': ['warn', { ignoreRestSiblings: true }],
-    indent: ['error', 2, { SwitchCase: 1, offsetTernaryExpressions: true }],
+    // indent: ['error', 2, { SwitchCase: 1, offsetTernaryExpressions: true }],
     quotes: ['error', 'single', { allowTemplateLiterals: true }],
     semi: ['error', 'always'],
     'react/jsx-uses-react': 'off',
