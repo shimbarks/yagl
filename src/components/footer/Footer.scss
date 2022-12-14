@@ -1,0 +1,34 @@
+@use '../../styles' as *;
+
+.footer {
+  padding-inline: 2rem;
+  background-color: $gray-500;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 2em;
+  line-height: 1;
+
+  &__links {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+  }
+
+  &__link {
+    color: white;
+  }
+
+  @media screen and (max-width: 400px) {
+    padding-block: 2rem;
+    flex-direction: column;
+  }
+
+  @media screen and (min-width: 401px) {
+    padding-block: 1rem;
+  }
+
+  @media screen and (max-width: 800px) {
+    justify-content: space-between;
+  }
+}

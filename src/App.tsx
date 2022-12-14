@@ -2,6 +2,7 @@ import { useEffect, useId, useRef, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useI18n } from 'react-simple-i18n';
 import './App.scss';
+import { Footer } from './components/footer/Footer';
 import { Header } from './components/header/Header';
 import { ToneTabs } from './components/tone-tabs/ToneTabs';
 import { YaglForm } from './components/yagl-form/YaglForm';
@@ -123,6 +124,7 @@ export const App = () => {
         </div>
         <ToneTabs yagl={yagl} resetFlag={resetTabsFlag} />
       </main>
+      <Footer />
     </div>
   );
 };

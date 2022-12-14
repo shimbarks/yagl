@@ -1,16 +1,15 @@
 @use './styles' as *;
 
 .app {
-  margin-inline: auto;
-  width: min(100%, 140ch);
   min-height: 100%;
-  padding: 2rem;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
 }
 
 .main {
+  margin-inline: auto;
+  width: min(100%, 140ch);
+  padding: 2rem 2rem 8rem;
   display: flex;
   flex-direction: column;
   align-items: center;
