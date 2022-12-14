@@ -3,18 +3,18 @@ import { LetterTone, Period, Yagl } from '../models/app.model';
 
 export const toneLangFuncMap = {
   [Language.ENGLISH]: {
-    [LetterTone.FORMAL]: writeFormalLetterEnglish,
-    [LetterTone.CASUAL]: writeCasualLetterEnglish,
-    [LetterTone.CHILL]: writeChillLetterEnglish,
+    [LetterTone.FORMAL]: composeFormalLetterEnglish,
+    [LetterTone.CASUAL]: composeCasualLetterEnglish,
+    [LetterTone.CHILL]: composeChillLetterEnglish,
   },
   [Language.HEBREW]: {
-    [LetterTone.FORMAL]: writeFormalLetterHebrew,
-    [LetterTone.CASUAL]: writeCasualLetterHebrew,
-    [LetterTone.CHILL]: writeChillLetterHebrew,
+    [LetterTone.FORMAL]: composeFormalLetterHebrew,
+    [LetterTone.CASUAL]: composeCasualLetterHebrew,
+    [LetterTone.CHILL]: composeChillLetterHebrew,
   },
 };
 
-export function writeFormalLetterEnglish(
+export function composeFormalLetterEnglish(
   { company, roles, firstName, lastName, email, linkedIn }: Yagl,
   { amount, unit }: Period
 ): string {
@@ -35,8 +35,8 @@ export function writeFormalLetterEnglish(
   `;
 }
 
-export function writeCasualLetterEnglish(
-  { firstName, phone, email, linkedIn, company, lastDay }: Yagl,
+export function composeCasualLetterEnglish(
+  { firstName, phone, email, linkedIn, company, lob, lastDay }: Yagl,
   { amount, unit }: Period
 ): string {
   return `Hello everyone!
@@ -45,7 +45,7 @@ export function writeCasualLetterEnglish(
 
   It's been a pleasure working with you guys here at ${company}.
   I'll miss our coffee breaks, the happy hours and the PlayStation games...
-
+  ${composeLobPhrase(Language.ENGLISH, lob)}
   Hope to stay in touch, you can reach me by phone, email or however you'd like to.
   If we haven't connected yet via LinkedIn you're welcome to look for me.
 
@@ -61,7 +61,7 @@ export function writeCasualLetterEnglish(
   `;
 }
 
-export function writeChillLetterEnglish(
+export function composeChillLetterEnglish(
   { firstName, phone, email, linkedIn, company, lastDay }: Yagl,
   { amount, unit }: Period
 ): string {
@@ -85,7 +85,7 @@ export function writeChillLetterEnglish(
   `;
 }
 
-export function writeFormalLetterHebrew(
+export function composeFormalLetterHebrew(
   { company, roles, firstName, lastName, email, linkedIn }: Yagl,
   { amount, unit }: Period
 ): string {
@@ -105,8 +105,8 @@ export function writeFormalLetterHebrew(
   ${linkedIn ?? ''}`;
 }
 
-export function writeCasualLetterHebrew(
-  { firstName, phone, email, linkedIn, company, lastDay }: Yagl,
+export function composeCasualLetterHebrew(
+  { firstName, phone, email, linkedIn, company, lob, lastDay }: Yagl,
   { amount, unit }: Period
 ): string {
   return `הי לכולם!
@@ -115,7 +115,7 @@ export function writeCasualLetterHebrew(
 
   היה תענוג לעבוד איתכם כאן ב-${company}.
   אני אתגעגע להפסקות הקפה שלנו, ל-Happy Hours ולמשחקי הפלייסטיישן...
-
+  ${composeLobPhrase(Language.HEBREW, lob)}
   שמרו על קשר, מוזמנים לדבר איתי בטלפון, במייל או איך שבא לכם.
   אם אנחנו עדיין לא חברים בלינקדאין אתם מוזמנים לחפש אותי שם.
 
@@ -130,7 +130,7 @@ export function writeCasualLetterHebrew(
   ${linkedIn ?? ''}`;
 }
 
-export function writeChillLetterHebrew(
+export function composeChillLetterHebrew(
   { firstName, phone, email, linkedIn, company, lastDay }: Yagl,
   { amount, unit }: Period
 ): string {
@@ -151,4 +151,18 @@ export function writeChillLetterHebrew(
   ${phone}
   ${email}
   ${linkedIn ?? ''}`;
+}
+
+function composeLobPhrase(lang: Language, lob?: string): string {
+  const lobList = lob?.split(',');
+
+  if (lob && lobList?.length === 1) {
+    return lang === Language.ENGLISH
+      ? `I'd especially like to thank ${lob} folks.
+      `
+      : `תודה מיוחדת לחבר'ה מ-${lob}.
+      `;
+  } else {
+    return '';
+  }
 }
