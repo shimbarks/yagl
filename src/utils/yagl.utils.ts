@@ -72,17 +72,17 @@ function calcWorkingPeriod(startDateString: string, lang: Language): Period {
   switch (true) {
     case days < 7:
       return {
-        unit: isEnglish ? 'days' : 'ימים',
+        unit: isEnglish ? 'day' : 'ימים',
         amount: days,
       };
     case days < 28:
       return {
-        unit: isEnglish ? 'weeks' : 'שבועות',
+        unit: isEnglish ? 'week' : 'שבועות',
         amount: Math.round(days / 7),
       };
     case months < 12:
       return {
-        unit: isEnglish ? 'months' : 'חודשים',
+        unit: isEnglish ? 'month' : 'חודשים',
         amount: months,
       };
     default: {
@@ -91,7 +91,7 @@ function calcWorkingPeriod(startDateString: string, lang: Language): Period {
       const years = decimal === '5' ? +yearsString : Math.round(days / 365);
 
       return {
-        unit: isEnglish ? 'years' : 'שנים',
+        unit: isEnglish ? 'year' : 'שנים',
         amount: years,
       };
     }

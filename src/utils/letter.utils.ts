@@ -1,5 +1,11 @@
 import { Language } from '../lang/lang.model';
-import { LetterTone, Period, Yagl } from '../models/app.model';
+import {
+  HebrewTimeUnit,
+  HebrewTimeUnitsMap,
+  LetterTone,
+  Period,
+  Yagl,
+} from '../models/app.model';
 
 export const toneLangFuncMap = {
   [Language.ENGLISH]: {
@@ -20,7 +26,9 @@ export function composeFormalLetterEnglish(
 ): string {
   return `Dear colleagues,
 
-  After ${amount} ${unit} at ${company}, I have decided to move on to my next challenge.
+  After ${amount} ${unit}${
+    amount > 1 ? 's' : ''
+  } at ${company}, I have decided to move on to my next challenge.
 
   As ${roles} in quite a few projects${composeLobPhrase({
     lang: Language.ENGLISH,
@@ -45,7 +53,9 @@ export function composeCasualLetterEnglish(
 ): string {
   return `Hello everyone!
   
-  ${amount} ${unit} have passed and it's time for me to go.
+  ${amount} ${unit}${
+    amount > 1 ? 's have' : ' has'
+  } passed and it's time for me to go.
 
   It's been a pleasure working with you guys here at ${company}.
   I'll miss our coffee breaks, the happy hours and the PlayStation games...
@@ -72,7 +82,7 @@ export function composeChillLetterEnglish(
   return `Yo, what's up bro/sis??!
 
   Yeah it's true, I'm leaving ${company}... 🙈🙉🙊
-  ${amount} ${unit}, but who counts..?
+  ${amount} ${unit}${amount > 1 ? 's' : ''}, but who counts..?
 
   I know you'll miss me..! 😁
   I'm gonna pass by the office on ${lastDay}, see ya there.
@@ -95,11 +105,13 @@ export function composeChillLetterEnglish(
 
 export function composeFormalLetterHebrew(
   { company, lob, roles, firstName, lastName, email, linkedIn }: Yagl,
-  { amount, unit }: Period
+  period: Period
 ): string {
   return `עמיתים יקרים,
 
-  אחרי ${amount} ${unit} ב-${company}, החלטתי לעבור לאתגר הבא שלי.
+  אחרי ${transformHebrewPeriod(
+    period
+  )} ב-${company}, החלטתי לעבור לאתגר הבא שלי.
 
   בתור ${roles} בלא מעט פרויקטים${composeLobPhrase({
     lang: Language.HEBREW,
@@ -119,11 +131,11 @@ export function composeFormalLetterHebrew(
 
 export function composeCasualLetterHebrew(
   { firstName, phone, email, linkedIn, company, lob, lastDay }: Yagl,
-  { amount, unit }: Period
+  period: Period
 ): string {
   return `הי לכולם!
   
-  ${amount} ${unit} חלפו וגם זמני הגיע.
+  ${transformHebrewPeriod(period)} ${spellHebrewPassed(period)} וגם זמני הגיע.
 
   היה תענוג לעבוד איתכם כאן ב-${company}.
   אני אתגעגע להפסקות הקפה שלנו, ל-Happy Hours ולמשחקי הפלייסטיישן...
@@ -144,12 +156,12 @@ export function composeCasualLetterHebrew(
 
 export function composeChillLetterHebrew(
   { firstName, phone, email, linkedIn, company, lob, lastDay }: Yagl,
-  { amount, unit }: Period
+  period: Period
 ): string {
   return `מה ניש אחים יקרים שלי??!
 
   וואלה שמעתם נכון, אני עוזב את ${company}... 🙈🙉🙊
-  ${amount} ${unit}, אבל מי סופר..?
+  ${transformHebrewPeriod(period)}, אבל מי סופר..?
 
   אני יודע שתתגעגעו אליי..! 😁
   אני אקפוץ למשרד ביום ${lastDay} להגיד שלום.
@@ -210,4 +222,21 @@ function composeLobPhrase({
   }
 
   return '';
+}
+
+function transformHebrewPeriod({ amount, unit }: Period): string {
+  if (amount > 2) {
+    return `${amount} ${unit}`;
+  }
+
+  const key = amount === 1 ? 'single' : 'double';
+  return HebrewTimeUnitsMap[key][unit as HebrewTimeUnit];
+}
+
+function spellHebrewPassed({ amount, unit }: Period): string {
+  if (amount === 1) {
+    return unit === 'שנים' ? 'חלפה' : 'חלף';
+  }
+
+  return 'חלפו';
 }
