@@ -225,12 +225,12 @@ function composeLobPhrase({
 }
 
 function transformHebrewPeriod({ amount, unit }: Period): string {
-  if (amount > 2) {
-    return `${amount} ${unit}`;
+  if (amount === 1 || amount === 2) {
+    const key = amount === 1 ? 'single' : 'double';
+    return HebrewTimeUnitsMap[key][unit as HebrewTimeUnit];
   }
 
-  const key = amount === 1 ? 'single' : 'double';
-  return HebrewTimeUnitsMap[key][unit as HebrewTimeUnit];
+  return `${amount} ${unit}`;
 }
 
 function spellHebrewPassed({ amount, unit }: Period): string {
