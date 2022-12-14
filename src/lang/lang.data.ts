@@ -5,7 +5,7 @@ export const langData = {
   [Language.ENGLISH]: {
     otherLang: 'עברית',
     heading: 'yet another goodbye letter',
-    description: `Fill the form or use the code editor with the yagl language to insert the details about your work at the company.
+    description: `Fill the form or use the code editor with the Yagl language to insert the details about your work at the company.
     
     Yagl has only a few rules:
     1. The only special characters are 👋 and 💌.
@@ -13,7 +13,7 @@ export const langData = {
     3. Leading and trailing white spaces are ignored.
     4. Keys that don't appear in the form are ignored.
     
-    After you filled the form or wrote the yagl code, click to generate your personal goodbye letter.
+    After filling the form or writing the Yagl code, click to generate your personal goodbye letter.
     You can choose one of three different flavours to your letter.
     
     You can also edit the generated content as you wish, and then copy it to the clipboard or send it right away by email!`,
@@ -34,7 +34,7 @@ export const langData = {
     },
     actions: {
       generateLetter: 'generate letter',
-      restart: 'restart',
+      restart: 'reset',
       copyToClipboard: 'Copy to clipboard',
       sendByEmail: 'Send by email',
     },
@@ -47,7 +47,7 @@ export const langData = {
   [Language.HEBREW]: {
     otherLang: 'english',
     heading: 'יֵט אָנַּזֶר גוּדְבָּיי לֶטֶּר',
-    description: `מלאו את הטופס או השתמשו בעורך הקוד עם שפת יגל (yagl) כדי להזין את הפרטים על עבודתכם בחברה.
+    description: `מלאו את הטופס או השתמשו בעורך הקוד עם שפת יגל (Yagl) כדי להזין את הפרטים על עבודתכם בחברה.
 
     ליגל יש רק כמה כללים:
     1. התווים המיוחדים היחידים הם 👋 ו 💌.
