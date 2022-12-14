@@ -74,7 +74,7 @@ export const App = () => {
     }
   };
 
-  const handleRestart = () => {
+  const handleReset = () => {
     reset();
     setYagl(undefined);
     setResetTabsFlag((val) => !val);
@@ -117,9 +117,9 @@ export const App = () => {
           <button
             type="button"
             className="app-button text-button"
-            onClick={handleRestart}
+            onClick={handleReset}
           >
-            {t('actions.restart')}
+            {t('actions.reset')}
           </button>
         </div>
         <ToneTabs yagl={yagl} resetFlag={resetTabsFlag} />

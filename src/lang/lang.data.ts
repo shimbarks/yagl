@@ -34,7 +34,7 @@ export const langData = {
     },
     actions: {
       generateLetter: 'generate letter',
-      restart: 'reset',
+      reset: 'reset',
       copyToClipboard: 'Copy to clipboard',
       sendByEmail: 'Send by email',
     },
@@ -76,7 +76,7 @@ export const langData = {
     },
     actions: {
       generateLetter: 'צור מכתב פרידה',
-      restart: 'התחל מחדש',
+      reset: 'התחל מחדש',
       copyToClipboard: 'העתק',
       sendByEmail: 'שלח באמצעות דואר אלקטרוני',
     },
