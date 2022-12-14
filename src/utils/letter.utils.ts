@@ -154,13 +154,13 @@ export function composeChillLetterHebrew(
 }
 
 function composeLobPhrase(lang: Language, lob?: string): string {
-  const lobList = lob?.split(',');
+  const firstLob = lob?.split(',')[0];
 
-  if (lob && lobList?.length === 1) {
+  if (firstLob) {
     return lang === Language.ENGLISH
-      ? `I'd especially like to thank ${lob} folks.
+      ? `A special thanks to ${firstLob} folks.
       `
-      : `תודה מיוחדת לחבר'ה מ-${lob}.
+      : `תודה מיוחדת לחבר'ה מ-${firstLob}.
       `;
   } else {
     return '';
