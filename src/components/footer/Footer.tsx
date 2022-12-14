@@ -13,7 +13,7 @@ export const Footer: React.FC = () => {
           target="_blank"
           rel="noreferrer"
         >
-          <GitHubIcon />
+          <GitHubIcon title="GitHub" />
         </a>
         <a
           className="footer__link"
@@ -21,7 +21,7 @@ export const Footer: React.FC = () => {
           target="_blank"
           rel="noreferrer"
         >
-          <LinkedInIcon />
+          <LinkedInIcon title="LinkedIn" />
         </a>
       </div>
     </footer>
