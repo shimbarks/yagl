@@ -47,7 +47,7 @@ export const langData = {
   [Language.HEBREW]: {
     otherLang: 'english',
     heading: 'יֵט אָנַּזֶר גוּדְבָּיי לֶטֶּר',
-    description: `מלא את הטופס או השתמש בעורך הקוד עם שפת יגל (yagl) כדי להזין את הפרטים על עבודתך בחברה.
+    description: `מלאו את הטופס או השתמשו בעורך הקוד עם שפת יגל (yagl) כדי להזין את הפרטים על עבודתכם בחברה.
 
     ליגל יש רק כמה כללים:
     1. התווים המיוחדים היחידים הם 👋 ו 💌.
@@ -55,10 +55,10 @@ export const langData = {
     3. אין התייחסות לרווחים מיותרים בתחילת מילה או בסופה.
     4. אין התייחסות לצמדי key-value שאינם מופיעים בטופס.
     
-    לאחר שמילאת את הטופס או כתבת את הקוד, לחץ על הכפתור למטה כדי ליצור את מכתב הפרידה האישי שלך.
-    אתה יכול לבחור אחד משלושה סגנונות שונים למכתב שלך.
+    לאחר שמילאתם את הטופס או כתבתם את הקוד, לחצו על הכפתור למטה כדי ליצור את מכתב הפרידה האישי שלכם.
+    תוכלו לבחור אחד משלושה סגנונות שונים למכתב.
     
-    אתה יכול גם לערוך את התוכן שנוצר כרצונך, ולאחר מכן להעתיק אותו או לשלוח אותו מיד בדוא"ל!`,
+    תוכלו גם לערוך את התוכן שנוצר כרצונכם, ולאחר מכן להעתיק אותו או לשלוח אותו מיד בדוא"ל!`,
     form: {
       contactInfo: 'פרטי התקשרות',
       workHistory: 'קצת על תפקידי בחברה',
