@@ -1,11 +1,7 @@
 import { Language } from '../lang/lang.model';
-import {
-  HebrewTimeUnit,
-  HebrewTimeUnitsMap,
-  LetterTone,
-  Period,
-  Yagl,
-} from '../models/app.model';
+import { LetterTone, Yagl } from '../models/app.model';
+import { Period } from '../models/time.model';
+import { spellHebrewPassed, transformHebrewPeriod } from './time.utils';
 
 export const toneLangFuncMap = {
   [Language.ENGLISH]: {
@@ -222,21 +218,4 @@ function composeLobPhrase({
   }
 
   return '';
-}
-
-function transformHebrewPeriod({ amount, unit }: Period): string {
-  if (amount === 1 || amount === 2) {
-    const key = amount === 1 ? 'single' : 'double';
-    return HebrewTimeUnitsMap[key][unit as HebrewTimeUnit];
-  }
-
-  return `${amount} ${unit}`;
-}
-
-function spellHebrewPassed({ amount, unit }: Period): string {
-  if (amount === 1) {
-    return unit === 'שנים' ? 'חלפה' : 'חלף';
-  }
-
-  return 'חלפו';
 }

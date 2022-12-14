@@ -1,7 +1,8 @@
 import { WeekDays } from '../lang/lang.data';
 import { Language } from '../lang/lang.model';
-import { LetterTone, Period, Yagl, YAGL_KEYS } from '../models/app.model';
+import { LetterTone, Yagl, YAGL_KEYS } from '../models/app.model';
 import { toneLangFuncMap } from './letter.utils';
+import { calcWorkingPeriod } from './time.utils';
 
 export function parseYagl(value: string): Yagl {
   const unfilteredEntries = value
@@ -59,41 +60,4 @@ function transformRoles(roles: string, lang: Language): string {
   }
 
   return aggregatedRoles;
-}
-
-function calcWorkingPeriod(startDateString: string, lang: Language): Period {
-  const now = new Date();
-  const startDate = new Date(startDateString);
-  const diff = now.getTime() - startDate.getTime();
-  const days = Math.ceil(diff / (1000 * 3600 * 24));
-  const months = Math.round(days / 30);
-  const isEnglish = lang === Language.ENGLISH;
-
-  switch (true) {
-    case days < 7:
-      return {
-        unit: isEnglish ? 'day' : 'ימים',
-        amount: days,
-      };
-    case days < 28:
-      return {
-        unit: isEnglish ? 'week' : 'שבועות',
-        amount: Math.round(days / 7),
-      };
-    case months < 12:
-      return {
-        unit: isEnglish ? 'month' : 'חודשים',
-        amount: months,
-      };
-    default: {
-      const yearsString = (days / 365).toFixed(1);
-      const decimal = yearsString.at(-1);
-      const years = decimal === '5' ? +yearsString : Math.round(days / 365);
-
-      return {
-        unit: isEnglish ? 'year' : 'שנים',
-        amount: years,
-      };
-    }
-  }
 }
